@@ -22,7 +22,22 @@ const getAdver=(params)=>wxRequest(params,apiMall+"/qyb/getAdver");
 const getCompanyList=(params)=>wxRequest(params,apiMall+"/qyb/company/list");
 
 
-const getUserInfo=(params)=>wxRequest(params,apiMall+"qyb/user/info")
+const getUserInfo=(params)=>wxRequest(params,apiMall+"/qyb/user/info")
+
+
+
+const getCopDetail=(params)=>wxRequest(params,apiMall+"/qyb/cooperation/detail");
+
+const getComment=(params)=>wxRequest(params,apiMall+"/qyb/comment/list");
+
+
+const getUserList=(params)=>wxRequest(params,apiMall+"/qyb/user/getByCpyUser");
+
+const getCotList=(params)=>wxRequest(params,apiMall+"/qyb/cooperation/findCotList");
+
+
+const getComInfo=(params)=>wxRequest(params,apiMall+"/qyb/company/info");
+
 
 const getDiscoverList = (params) => wxRequest(params, apiMall + '/goods/list?cateidOne=1&cateidTwo=0&price=0&sales=2');
 
@@ -162,7 +177,11 @@ export default {
   getCooperationList,
   getAdver,
   getCompanyList,
-
+  getCopDetail,
+  getComment,
+  getUserList,
+  getCotList,
+  getComInfo,
 
 
 

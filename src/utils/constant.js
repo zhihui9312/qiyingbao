@@ -10,6 +10,10 @@ export const USER_SPECICAL_INFO = "userSpecialInfo";
  */
 export const USER_INFO = "userInfo";
 
+
+
+export  const  QYB_INFO="qybInfo";
+
 /**
  * 系统信息
  * @type {String}

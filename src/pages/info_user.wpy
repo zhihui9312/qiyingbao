@@ -1,0 +1,67 @@
+<template style="background: #F2F2F2">
+
+  <view style="margin:10px 0;position: relative;background: #fff;height: 50px;padding: 15px 0 0 15px;">
+    <image src="{{userInfo.avatar}}" style="width: 37px;height: 37px;border-radius: 37px;"></image>
+    <image class="arrow" src="../images/icon_arrow.png" style="float:right;width: 15px;height: 20px;padding-right: 15px;padding-top: 5px;"></image>
+    <div style="float:right;padding-right: 25px;vertical-align: 10px;padding-top: 5px;color: #999999;font-size: 14px;">上传头像
+    </div>
+  </view>
+
+
+  <view style="margin:10px 0;position: relative;background: #fff;height: 35px;padding: 10px 0 0 15px;">
+    <span style="float: left;color: #333333;padding-top: 3px; width: 60px;">昵称</span>
+    <input type="text" placeholder="请输入昵称" style="width: 70%;float: left;margin-left: 15px; " value="{{userInfo.name}}"/>
+  </view>
+  <view style="position: relative;background: #fff;height: 35px;padding: 10px 0 0 15px;">
+    <span style="float: left;color: #333333;padding-top: 3px;width: 60px;">手机号码</span>
+    <input type="text" placeholder="请输入手机号码" style="width: 70%;float: left;margin-left: 15px;"value="{{userInfo.mobile}}"/>
+  </view>
+  <view style="border-top: 1px solid #f2f2f2;position: relative;background: #fff;height: 35px;padding: 10px 0 0 15px;">
+    <span style="float: left;color: #333333;padding-top: 3px;width: 60px;">微信号</span>
+    <input type="text" placeholder="请输入微信号" style="width: 70%;float: left;margin-left: 15px;"value="{{userInfo.name}}"/>
+  </view>
+  <view style="margin:10px 0 0 0 ;position: relative;background: #fff;height: 35px;padding: 10px 0 0 15px;">
+    <span style="float: left;color: #333333;padding-top: 3px;width: 60px;">公司名称</span>
+    <input type="text" placeholder="请输入公司名称" style="width: 70%;float: left;margin-left: 15px;"value="{{userInfo.name}}"/>
+  </view>
+  <view style="border-top: 1px solid #f2f2f2;position: relative;background: #fff;height: 35px;padding: 10px 0 0 15px;">
+    <span style="float: left;color: #333333;padding-top: 3px;width: 60px;">我的职位</span>
+    <input type="text" placeholder="请输入职位" style="width: 70%;float: left;margin-left: 15px;"value="{{userInfo.position}}"/>
+  </view>
+
+
+  <view style="width: 90%; margin-left: 5%; text-align: center;background: #5EC6C6 ; font-size: 15px; height: 45px; color: #fff;line-height: 45px;border-radius: 10px;position: absolute;bottom: 15px;">保存</view>
+</template>
+
+
+<script>
+  import wepy from 'wepy';
+  import api from '@/api/api';
+  import tip from '@/utils/tip';
+  import {
+    USER_INFO, USER_SPECICAL_INFO, QYB_INFO
+  } from '@/utils/constant';
+
+  export default class InfoUser extends wepy.page {
+    config = {
+      navigationBarTitleText: "修改个人资料"
+    }
+    data = {
+      userInfo: {}
+    }
+
+    onLoad() {
+      let userInfo = wepy.getStorageSync(QYB_INFO);
+      console.log(userInfo);
+      this.userInfo = userInfo;
+    }
+
+
+  }
+
+
+</script>
+
+<style lang="less">
+
+</style>

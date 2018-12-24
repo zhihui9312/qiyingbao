@@ -49,7 +49,7 @@
 
     <bombscreen :types.sync="tps" :show.sync="is_show_alert" @close.user="closeAlert" @callback.user="alertCallback"></bombscreen>
 
-    <navigator style="position: fixed;right: 10px;bottom: 10px;border-radius: 70px;width: 70px;height: 70px;">
+    <navigator style="position: fixed;right: 10px;bottom: 10px;border-radius: 70px;width: 70px;height: 70px;" url="/pages/cooperation_detail?copId=1">
       <image style="width: 70px;height: 70px;" src="../images/icon_publish.png"></image>
 
     </navigator>
@@ -142,7 +142,6 @@
       that.getDiscoverList();
       that.getAdList();
     }
-
     computed = {}
     methods = {
       goToAdvert(url) {

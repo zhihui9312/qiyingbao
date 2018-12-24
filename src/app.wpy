@@ -10,10 +10,10 @@ import 'wepy-async-function'
 export default class extends wepy.app {
   config = {
     pages: [
+      'pages/authorize',
       'pages/home',
       'pages/home_detail',
       'pages/classify',
-      'pages/shop_cart',
       'pages/info',
       'pages/search',
       'pages/test',
@@ -22,7 +22,6 @@ export default class extends wepy.app {
       'pages/wholesale',
       'pages/replenishment_goods',
       'pages/register',
-      'pages/order',
       'pages/reorder',
       'pages/pay_success',
       'pages/points',
@@ -38,7 +37,10 @@ export default class extends wepy.app {
       'pages/filter',
       'pages/logistics',
       'pages/comment',
-      'pages/comment_add'
+      'pages/comment_add',
+      'pages/info_user',
+      'pages/cooperation_detail',
+      'pages/company_detail',
     ],
     window: {
       backgroundTextStyle: 'dark',

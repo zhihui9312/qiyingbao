@@ -1,0 +1,110 @@
+<template>
+
+  <navigator class="" style="padding : 20px;background: #fff" url="/pages/info_user">
+    <image style="width: 34px;height: 34px;border-radius: 34px;" src="{{copData.user.avatar}}"></image>
+    <div style="position: absolute; width: 50%;height: 34px;padding-top: -2px;margin-left: 15px;">
+      <view style="color: #333333;font-weight: bold;font-size: 14px;"> {{copData.user.name}} <!--<image style="width: 40px;height: 18px; vertical-align: -3px;margin-left: 5px;" src="../images/name_vip.png"></image>--></view>
+      <view style="color: #333333;font-size: 12px;margin-top: 5px;">{{copData.user.position}}</view>
+    </div>
+    <image class="arrow" src="../images/icon_arrow.png" style="position: absolute;right: 20px; top: 35px;width: 15px;height: 20px;"></image>
+  </navigator>
+  <view style="padding: 10px 20px;background: #fff ;border-top: 1px solid #f2f2f2;font-size: 15px;font-weight: bold;height: 70px;position: relative;overflow: hidden;">
+    {{copData.offerResource}}
+  </view>
+  <view style="font-size: 12px; color: #999999;font-weight: normal;background: #fff;padding: 10px 20px; height: 12px; line-height: 12px;">{{copData.area}}</view>
+
+  <view style="background: #fff;padding: 10px 20px; position: relative;border-top: 10px solid #f2f2f2;">
+    <div style="font-weight: bold;font-size: 12px;color: #333333;">业务介绍</div>
+    <view style="font-weight: normal;font-size: 14px;color: #707070;margin-top: 20px;">{{copData.offerResource}}</view>
+
+    <view style="font-weight: normal;font-size: 14px;color: #999999;margin-top: 15px;">
+      {{copData.views}}人浏览过
+    </view>
+  </view>
+  <view style="position: relative;width: 100%;height: 70px;padding: 10px 20px;background: #fff;border-top: 10px solid #f2f2f2;">
+    <image style="width: 59px;height: 59px;position: absolute;top: 18%; border-radius: 10px;" src="{{copData.company.logo}}"/>
+
+    <view style="height: 24px;margin-left: 70px;position: absolute;top: 33%;">
+      <view style="font-size: 12px;color: #999999">
+        {{copData.company.name}}
+      </view>
+      <view style="font-size: 12px;color: #999999">
+        {{copData.company.cooperationCount}}条合作信息 - {{copData.company.userCount}} 人 - {{copData.company.industry}}
+      </view>
+    </view>
+  </view>
+
+  <view style="background: #fff;padding: 10px 20px;">
+    留言 · {{comList.length}}条
+  </view>
+
+  <view wx:for="{{comList}}" wx:key="item" @tap="changeCate" data-code="" style="background: #fff;padding: 10px 20px;position: relative;width: 100%;height: 40px;border-top: 1px solid #f2f2f2;">
+    <image style="width: 34px;height: 34px;position: absolute;top: 25%; border-radius: 34px;" src="{{item.user.avatar}}"/>
+    <view style="height: 24px;padding-left: 50px;position: absolute;top: 20%;">
+      <view style="font-size: 14px;color: #5EC6C6">
+        {{item.user.name}}
+      </view>
+      <view style="font-size: 14px;color: #333333">
+        {{item.content}}
+      </view>
+    </view>
+  </view>
+
+  <view style="background: #fff;padding: 10px 20px; height: 55px;width: 100%;border-top: 1px solid #f2f2f2;">
+    <div style="color: #5EC6C6;border: 1px solid #5EC6C6;border-radius: 5px; height: 50px;width: 100px;float: left; text-align: center;line-height: 50px;font-size: 15px;box-sizing: border-box;">
+      留言
+    </div>
+    <div style="color: #fff;width: 55%;float: left;text-align: center;line-height: 50px;font-size: 15px;background: #5EC6C6;margin-left: 20px;border-radius: 5px;">
+      查看联系方式
+    </div>
+  </view>
+
+</template>
+
+<script>
+
+  import wepy from 'wepy';
+  import api from '@/api/api';
+  import tip from '@/utils/tip';
+  import {
+    USER_INFO, USER_SPECICAL_INFO, QYB_INFO
+  } from '@/utils/constant';
+
+  export default class CooperationDetail extends wepy.page {
+    config = {
+      navigationBarTitleText: '广告详情',
+    }
+    data = {
+      copData: {},
+      copId: "",
+      comList: []
+    }
+
+    onLoad(option) {
+      this.copId = option.copId;
+      //this.copId = "1";
+      this.getDetail(this.copId)
+    }
+
+    async getDetail(id) {
+      let that = this;
+      const json = await api.getCopDetail({
+        query: {
+          id: id
+        }
+      });
+      const comJson = await api.getComment({
+        query: {
+          copId: id
+        }
+      });
+      that.comList = comJson.data.data;
+      that.copData = json.data.data;
+      that.$apply();
+    }
+
+
+  }
+
+
+</script>

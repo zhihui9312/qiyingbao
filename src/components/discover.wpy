@@ -4,7 +4,7 @@
         <view class="discover_title_doc">发现好商品</view>
     </view>-->
     <view class="discover_list">
-      <navigator class="item" open-type="navigate" style="margin-bottom: 10px;" wx:for="{{list}}" wx:key="item" url="/pages/home_detail?code={{item.code}}">
+      <navigator class="item" open-type="navigate" style="margin-bottom: 10px;" wx:for="{{list}}" wx:key="item" url="/pages/cooperation_detail?copId={{item.id}}">
 
         <view style="width: 100%;position: relative; margin: 10px 5px 10px 15px; padding: 10px 0px 10px 10px;">
           <view>

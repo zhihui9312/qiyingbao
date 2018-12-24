@@ -1,7 +1,32 @@
 <template>
 
-  <view style="background-color: #EEEEEE">所有合作信息均由专人审核，禁止发布广告及业务宣传信息</view>
+  <view style="background: #fff">
+    <view
+      style="background-color: #EEEEEE;color: #999999;font-size: 12px;height: 33px;line-height: 33px;padding-left: 13px;">
+      所有合作信息均由专人审核，禁止发布广告及业务宣传信息
+    </view>
 
+    <view style="" class="item">
+      <span style="">合作标题</span><input type="text" style="" placeholder="请输入标题内容(30字以内)"/>
+    </view>
+    <view style="" class="item">
+      <span>合作方式</span><input type="text" placeholder="请输入合作方式"/>
+    </view>
+
+    <view style="" class="item">
+      <span>合作地区</span><input type="text" placeholder="请输入合作地区"/>
+    </view>
+    <view style="height: 80px;border-top: 1px solid #F2F2F2;color: #333333;font-size: 14px;padding: 10px 17px 0;"
+          class="">
+      <span style="float: left;">业务介绍</span><textarea
+      style="float: left;width: 70%;margin-left: 20px;height: 80px;overflow: hidden;" type="text"
+      placeholder="介绍您的业务描述（如行业、经营业务范 围等，100字以内）"/>
+    </view>
+  </view>
+  <view @tap="saveCoopeartion"
+        style="text-align: center;width: 90%;height: 45px;background: #5EC6C6;line-height: 45px;font-size: 15px;color: #FFF;position: absolute;bottom: 10px;border-radius: 10px;margin-left: 20px;">
+    确定发布
+  </view>
 
 </template>
 
@@ -13,9 +38,44 @@
 
 
   export default class CooperationAdd extends wepy.page {
-    config={
-      navigationBarTitleText:""
+    config = {
+      navigationBarTitleText: ""
+    }
+
+    async  saveCoopeartion() {
+      const json = await api.getCompanyList({
+        query: {
+          name: name
+        }
+      });
+    }
+    methods = {
+
+
     }
 
   }
 </script>
+
+<style lang="less">
+  .item {
+    height: 40px;
+    padding: 10px 17px 0;
+    font-size: 14px;
+    line-height: 40px;
+    margin-bottom: 1px;
+    border-top: 1px solid #F2F2F2;
+  }
+
+  .item span {
+    color: #333333;
+  }
+
+  .item input {
+    color: black;
+    display: inline-block;
+    vertical-align: -7px;
+    margin-left: 20px;
+    width: 75%;
+  }
+</style>

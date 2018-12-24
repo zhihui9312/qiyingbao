@@ -1,0 +1,21 @@
+<template>
+
+  <view style="background-color: #EEEEEE">所有合作信息均由专人审核，禁止发布广告及业务宣传信息</view>
+
+
+</template>
+
+<script>
+
+  import wepy from 'wepy';
+  import api from '@/api/api';
+  import tip from '@/utils/tip'
+
+
+  export default class CooperationAdd extends wepy.page {
+    config={
+      navigationBarTitleText:""
+    }
+
+  }
+</script>

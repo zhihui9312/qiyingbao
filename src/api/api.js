@@ -3,14 +3,27 @@ import {
 } from '@/utils/wxRequest';
 
 let env = "-test" //-dev 或者 -test
-const apiMall = 'https://sujiefs.com/'
-// const apiMall = 'http://localhost:8080/'
+//const apiMall = 'https://sujiefs.com/'
+ const apiMall = 'http://localhost:8181/jeesite/f'
 
 /**
  * 获取发现好商品接口
  * @param  {[type]} params [description]
  * @return {[type]}        [description]
  */
+
+//获取合作列表
+const getCooperationList=(params)=>wxRequest(params,apiMall+"/qyb/cooperation/list");
+
+//获取首页动图
+const getAdver=(params)=>wxRequest(params,apiMall+"/qyb/getAdver");
+
+//获取公司列表
+const getCompanyList=(params)=>wxRequest(params,apiMall+"/qyb/company/list");
+
+
+const getUserInfo=(params)=>wxRequest(params,apiMall+"qyb/user/info")
+
 const getDiscoverList = (params) => wxRequest(params, apiMall + '/goods/list?cateidOne=1&cateidTwo=0&price=0&sales=2');
 
 //微信的jscode换取sessionKey
@@ -87,7 +100,7 @@ const registerUser = (params) => wxRequest(params, apiMall + '/api/userCenter/re
 const sendRandCode = (params) => wxRequest(params, apiMall + '/api/sms/send');
 
 //用户是否绑定手机号
-const getUserInfo = (params) => wxRequest(params, apiMall + '/api/userCenter/getUserInfo');
+/*const getUserInfo = (params) => wxRequest(params, apiMall + '/api/userCenter/getUserInfo');*/
 
 //用户收货地址
 const getUserAddress = (params) => wxRequest(params, apiMall + '/api/receiverInfo/list');
@@ -145,6 +158,22 @@ const childGoodsCatetoryList = (params) => wxRequest(params, apiMall + '/api/mal
 const getAdList = (params) => wxRequest(params, apiMall + '/api/adverts/list');
 
 export default {
+
+  getCooperationList,
+  getAdver,
+  getCompanyList,
+
+
+
+
+
+
+
+
+
+
+
+
   hostGoodsList,
   getDiscoverList,
   getHomeDisvocerList,

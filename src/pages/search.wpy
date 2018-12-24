@@ -1,17 +1,31 @@
 <template>
   <view class="container">
     <search @searchValue.user="doSearch"></search>
-    <filterBar wx:if="{{list.length>0||skuval !==''}}" @currentType.user="currentType"></filterBar>
+    <!--<filterBar wx:if="{{list.length>0||skuval !==''}}" @currentType.user="currentType"></filterBar>-->
     <view wx:if="{{list.length>0}}">
       <!--矩阵商品列表模块-->
-      <shopGridList :purchasetype.sync="purchasetype" :list.sync="list"></shopGridList>
+      <view wx:for="{{list}}" wx:key="item" @tap="changeCate" data-code="{{item.logo}}">
+        <view style="position: relative;width: 100%;height: 70px;padding: 10px;">
+          <image style="width: 59px;height: 59px;position: absolute;top: 18%; border-radius: 10px;" src="{{item.logo}}"/>
+
+          <view style="height: 24px;margin-left: 70px;position: absolute;top: 33%;">
+            <view style="font-size: 12px;color: #999999">
+              {{item.name}}
+            </view>
+            <view style="font-size: 12px;color: #999999">
+              {{item.cooperationCount}}条合作信息 - {{item.userCount}} 人 - {{item.industry}}
+            </view>
+          </view>
+          <view style="background-color: #F2F2F2;width: 100%;height: 1px;position: absolute;bottom: 0"></view>
+        </view>
+      </view>
       <!--加载更多时动画-->
       <bottomLoadMore :show.sync="showLoading" message="正在加载"></bottomLoadMore>
       <!--暂无数据显示-->
       <placeholder :show.sync="is_empty" message="暂无发现数据"></placeholder>
 
     </view>
-    <view class="history {{show?'':'hidden'}}" wx:else>
+    <!--<view class="history {{show?'':'hidden'}}" wx:else>
       <view class="doc">历史记录</view>
       <view class="lable">
         <view wx:for="{{keywordhisList}}" wx:key="item" @tap.stop="selHisKeyWord" data-id="{{item.id}}">
@@ -21,7 +35,7 @@
       <view class="btn_box">
         <view class="button type_empity" @tap.stop="clearHis">清除历史记录</view>
       </view>
-    </view>
+    </view>-->
   </view>
 </template>
 
@@ -64,23 +78,10 @@
       keyword: "",
       keywordhisList: [],
       cateCode: "",
-      show: true,
+      show: false,
       sort: -1,
       title: "",
       skuval: ""
-    }
-    async getKeyWordHisList() {
-      let userSpecialInfo = wepy.getStorageSync(USER_SPECICAL_INFO) || {};
-      let openId = userSpecialInfo.openid;
-      const json = await api.searchKeywordList({
-        query: {
-          openId: openId
-        }
-      });
-      if (json.data.code == 0) {
-        this.keywordhisList = json.data.list;
-      }
-      this.$apply();
     }
     setTitle(title) {
       wepy.setNavigationBarTitle({
@@ -88,37 +89,26 @@
       })
     }
     onLoad(option) {
-      this.list = [];
-      this.skuval = "";
-      this.cateCode = option.cateCode;
-      if (this.cateCode != undefined && this.cateCode.length > 0) { //分类进入
-        this.$invoke('search', 'show', "0");
-        this.show = false;
-        this.doSearchGoods(this.cateCode);
-        this.title = "" + option.title;
-        this.setTitle("" + option.title);
-      } else { //搜索进入
-        this.$invoke('search', 'show', "1");
-        this.show = true;
-        this.getKeyWordHisList();
-      }
+      this.doSearchGoods(this.cateCode);
     }
     computed = {}
     async doSearchGoods(keyword, currentPage, size) {
       let that = this;
-      const json = await api.getGoodsList({
+      const json = await api.getCompanyList({
         query: {
-          page: currentPage || 1,
-          size: size || 10,
-          searchKeyWords: this.keyword,
+          pageNo: currentPage || 1,
+          pageSize: size || 10,
+          name: keyword,
           cateCode: this.cateCode || "",
           sort: this.sort,
           skuval: this.skuval
         }
       });
-      if (json.data.code == 0) {
-        that.list = [...that.list, ...json.data.list];
-        that.page_total = json.data.page_total;
+
+      console.log(json);
+      if (json.data.code == 200) {
+        that.list = [...that.list, ...json.data.data.list];
+        that.page_total = json.data.data.count;
         if (json.data.page_total == 0) {
           //暂无数据
           that.is_empty = true;
@@ -128,7 +118,7 @@
       }
       that.showLoading = false;
       that.$apply();
-      if (keyword.length > 0) {
+/*      if (keyword.length > 0) {
         let userSpecialInfo = wepy.getStorageSync(USER_SPECICAL_INFO) || {};
         let openId = userSpecialInfo.openid;
         const resultJson = await api.addSearchKeyword({
@@ -137,25 +127,12 @@
             keyword: keyword
           }
         });
-      }
+      }*/
     }
-    async clearUserKeywords() {
-      let userSpecialInfo = wepy.getStorageSync(USER_SPECICAL_INFO) || {};
-      let openId = userSpecialInfo.openid;
-      const json = await api.clearSearchKeyword({
-        query: {
-          openId: openId
-        }
-      });
-      if (json.data.code == 0) {
-        this.keywordhisList = [];
-      } else {
-        tip.error(json.data.msg);
-      }
-      this.$apply();
-    }
+
     methods = {
       doSearch(val) {
+        console.log(val)
         this.list = [];
         this.is_empty = false;
         //tip.success("搜索：" + val);
@@ -163,7 +140,7 @@
         this.keyword = val;
         this.doSearchGoods(val);
         //this.list = bb.result.products;
-        //this.$apply();
+        this.$apply();
       },
       currentType(obj) {
         //tip.success("状态:" + obj);

@@ -10,7 +10,6 @@ import 'wepy-async-function'
 export default class extends wepy.app {
   config = {
     pages: [
-      'pages/authorize',
       'pages/home',
       'pages/home_detail',
       'pages/classify',
@@ -43,9 +42,9 @@ export default class extends wepy.app {
     ],
     window: {
       backgroundTextStyle: 'dark',
-      navigationBarBackgroundColor: '#FFFFFF',
+      navigationBarBackgroundColor: '#5EC6C6',
       navigationBarTitleText: 'WeChat',
-      navigationBarTextStyle: 'black',
+      navigationBarTextStyle: 'white',
       enablePullDownRefresh: false,
       backgroundColor: '#EFEFEF'
 
@@ -62,17 +61,12 @@ export default class extends wepy.app {
         "selectedIconPath": "images/icon_home_active.png"
       }, {
         "pagePath": "pages/classify",
-        "text": "分类",
+        "text": "找企业",
         "iconPath": "images/icon_classify.png",
         "selectedIconPath": "images/icon_classify_active.png"
       }, {
-        "pagePath": "pages/shop_cart",
-        "text": "购物车",
-        "iconPath": "images/icon_shop_cart.png",
-        "selectedIconPath": "images/icon_shop_cart_active.png"
-      }, {
         "pagePath": "pages/info",
-        "text": "我",
+        "text": "我的",
         "iconPath": "images/icon_info.png",
         "selectedIconPath": "images/icon_info_active.png"
       }]

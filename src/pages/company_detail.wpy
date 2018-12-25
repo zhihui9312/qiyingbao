@@ -9,7 +9,7 @@
 
   <view style="padding: 10px 20px;background: #fff">
     <view style="color: #333333;font-size: 12px;font-weight: bold;padding-bottom: 15px ;">公司成员</view>
-    <view style="width: 100%;overflow-x: scroll;">
+    <view style="width: 100%;overflow-x: hidden;">
       <div wx:for="{{userList}}" wx:key="item" style="text-align: center;width: 80px;float: left;">
         <image src="{{item.avatar}}" style="width: 39px;height: 39px;border-radius: 39px;"/>
         <view style="font-size: 12px;color: #333333;">{{item.name}}</view>

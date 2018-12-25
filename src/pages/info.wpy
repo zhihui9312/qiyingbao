@@ -13,21 +13,23 @@
       <view class="member" style="">
 
         <div class="member-column" style="">
-          <view class="member-number" style="">2101</view>
+          <view class="member-number" style="">{{userInfo.advCount}}</view>
           <div class="member-title" style="">可发广告条数</div>
         </div>
         <div class="member-column" style="">
-          <view>234</view>
+          <view>{{userInfo.phCount}}</view>
           <div>剩余查看电话</div>
         </div>
         <div class="member-column" style="">
-          <view>256</view>
+          <view>{{userInfo.companion}}</view>
           <div>推荐人数</div>
         </div>
+<!--
         <div class="member-column" style="">
           <view>998.23</view>
           <div>账户余额</div>
         </div>
+-->
 
       </view>
     </view>
@@ -44,7 +46,7 @@
             </navigator>-->
       <navigator class="item" url="/pages/order">
         <view class="item_content">
-          <image class="item_img" src="../images/icon_my_02.png"></image>
+         <!-- <image class="item_img" src="../images/icon_my_02.png"></image>-->
           <view class="text">我的消息</view>
         </view>
         <view class="arrow">&gt;</view>
@@ -55,16 +57,20 @@
     <view class="info_block">
 
 
-      <navigator class="item" url="/pages/reorder">
+      <navigator class="item" url="/pages/member_center">
         <view class="item_content">
+<!--
           <image class="item_img" src="../images/icon_my_02.png"></image>
+-->
           <view class="text">会员中心</view>
         </view>
         <view class="arrow">&gt;</view>
       </navigator>
-      <navigator class="item" url="/pages/points">
+      <navigator class="item" url="/pages/">
         <view class="item_content">
+<!--
           <image class="item_img" src="../images/icon_my_03.png"></image>
+-->
           <view class="text">我的团队</view>
         </view>
         <view class="arrow">&gt;</view>
@@ -73,16 +79,20 @@
 
       <view class="info_block">
 
-      <navigator class="item" url="/pages/collection?type=0">
+      <navigator class="item" url="/pages/?type=0">
         <view class="item_content">
+<!--
           <image class="item_img" src="../images/icon_my_04.png"></image>
+-->
           <view class="text">我的发布</view>
         </view>
         <view class="arrow">&gt;</view>
       </navigator>
-      <navigator class="item" url="/pages/collection?type=1">
+      <navigator class="item" url="/pages/info_company">
         <view class="item_content">
+<!--
           <image class="item_img" src="../images/icon_my_05.png"></image>
+-->
           <view class="text">我的公司</view>
         </view>
         <view class="arrow">&gt;</view>
@@ -90,9 +100,11 @@
     </view>
 
     <view class="info_block">
-      <navigator class="item" url="/pages/messages">
+      <navigator class="item" url="/pages/">
         <view class="item_content">
+<!--
           <image class="item_img" src="../images/icon_my_06.png"></image>
+-->
           <view class="text">我要推广赚钱</view>
         </view>
         <view class="arrow">&gt;</view>
@@ -115,16 +127,16 @@
     components = {}
 
     data = {
-      openId:"1",
       bShowBind: false,
-      userInfo:{}
+      userInfo:{},
+      speInfo:{}
     }
 
-    async getUserInfo(phone, code) {
+    async getUserInfo() {
       let that = this;
       const json = await api.getUserInfo({
         query: {
-          openid: that.openId
+          openid: that.speInfo.openid
         }
       });
       console.log(json);
@@ -142,19 +154,8 @@
 
     onLoad() {
       let that = this;
-      let userInfo = wepy.getStorageSync(USER_INFO);
-/*      that.avatarUrl = userInfo.avatarUrl;
-      that.nickName = userInfo.nickName;*/
-      that.openId="1";
-
-      console.log(userInfo);
-
-
-
+      that.speInfo = wepy.getStorageSync(USER_SPECICAL_INFO);
       this.getUserInfo();
-
-
-
     }
 
     onShow() {
@@ -172,7 +173,7 @@
   .member-column {
     float: left;
     text-align: center;
-    width: 25%;
+    width: 33.3%;
   }
 
   .bottom-line {

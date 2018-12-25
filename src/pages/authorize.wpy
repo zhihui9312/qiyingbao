@@ -1,7 +1,7 @@
 <template>
   <view class="authorize-contianer">
     <image class="authorize-icon" src="../images/authorize.png"></image>
-    <view class="auth-item">商城申请获取以下权限：</view>
+    <view class="auth-item">企营宝申请获取以下权限：</view>
     <view class="auth-item">获取你的公开信息（头像、昵称等）</view>
     <view class="btn-authorize">
       <button open-type="getUserInfo" type="primary" lang="zh_CN" bindgetuserinfo="onGotUserInfo">授权</button>
@@ -14,19 +14,22 @@
   import {
     SYSTEM_INFO,
     USER_SPECICAL_INFO,
-    USER_INFO
+    USER_INFO,
+    QYB_INFO
   } from '@/utils/constant';
+
   export default class Authorize extends wepy.page {
     config = {
       navigationBarTitleText: '授权登录',
     }
+
     async onLoad() {
       let res = await wepy.getSetting()
       if ((res.authSetting)['scope.userInfo']) {
         let userInfo = wepy.getStorageSync(USER_INFO)
         //if (!userInfo.nickName) {
-          if (true) {
-          let data  = await wepy.getUserInfo()
+        if (true) {
+          let data = await wepy.getUserInfo()
           if (data) {
             wepy.setStorageSync(USER_INFO, data.userInfo)
           }
@@ -41,9 +44,42 @@
                 nickName: data.userInfo.nickName
               }
             })
-            if (rlt.data.result) {
+            console.log(rlt);
+            if (rlt.data.code == 200) {
               let data = rlt.data;
               if (data.data.openid) {
+                console.log(data.data.openid);
+
+                let openid = data.data.openid;
+
+                let userInfo = await api.getUserInfo({
+                  query: {
+                    openid: openid
+                  }
+                });
+
+                const json = await api.getUserInfo({
+                  query: {
+                    openid: openid
+                  }
+                });
+                wepy.setStorageSync(QYB_INFO, json.data.data);
+
+
+
+                if(userInfo.data.data){
+
+
+
+
+                }else{
+
+                }
+
+
+                console.log(userInfo);
+
+
                 wepy.setStorageSync(USER_SPECICAL_INFO, data.data);
               }
             }
@@ -54,7 +90,9 @@
         })
       }
     }
+
     async onGotUserInfo(e) {
+      console.log("hhhhhh")
       if (e.detail.errMsg == 'getUserInfo:ok') {
         let res = await wepy.login();
         if (res.code) {
@@ -67,10 +105,43 @@
               nickName: e.detail.userInfo.nickName
             }
           })
-          if (rlt.data.result) {
+          if (rlt.data.code == 200) {
             let data = rlt.data;
             if (data.data.openid) {
               wepy.setStorageSync(USER_SPECICAL_INFO, data.data);
+
+              let openid = data.data.openid;
+
+              let userInfo = await api.getUserInfo({
+                query: {
+                  openid: openid
+                }
+              });
+
+              if(userInfo.data.data){
+
+              }else {
+                let data = wepy.getStorageSync(USER_INFO)
+                console.log(data);
+                let reg=await api.registerUser({
+                  query:{
+                    openid:openid,
+                    avatar:data.avatarUrl,
+                    country:data.country,
+                    province:data.province,
+                    city:data.city,
+                    name:data.nickName
+                  }
+                })
+
+                const json = await api.getUserInfo({
+                  query: {
+                    openid: openid
+                  }
+                });
+                wepy.setStorageSync(QYB_INFO, json.data.data);
+
+              }
               wepy.switchTab({
                 url: '/pages/home'
               })
@@ -90,12 +161,9 @@
         }
       }
     }
-    methods = {
 
-    }
-    events = {
-
-    }
+    methods = {}
+    events = {}
   }
 </script>
 <style lang="less">
@@ -107,19 +175,19 @@
     height: 100%;
     background: #fff;
     text-align: center;
-    padding-top: 100rpx;
+    padding-top: 40px;
     .authorize-icon {
-      width: 128rpx;
-      height: 128rpx;
+      width: 80px;
+      height: 80px;
       display: block;
       margin: 0 auto;
-      padding-bottom: 10rpx;
+      padding-bottom: 10px;
     }
     .auth-item {
-      padding: 5rpx 0;
+      padding: 5px 0;
     }
     .btn-authorize {
-      margin: 100rpx 50rpx;
+      margin: 40px 40px;
     }
   }
 </style>

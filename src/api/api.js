@@ -4,7 +4,9 @@ import {
 
 let env = "-test" //-dev 或者 -test
 //const apiMall = 'https://sujiefs.com/'
- const apiMall = 'http://localhost:8181/jeesite/f'
+ const apiMall = 'http://localhost:8181/qyb/f'
+//const apiMall = 'http://47.105.199.35/qyb/f'
+const host='http://47.105.199.35';
 
 /**
  * 获取发现好商品接口
@@ -24,6 +26,7 @@ const getCompanyList=(params)=>wxRequest(params,apiMall+"/qyb/company/list");
 
 const getUserInfo=(params)=>wxRequest(params,apiMall+"/qyb/user/info")
 
+const registerUser=(params)=>wxRequest(params,apiMall+"/qyb/register");
 
 
 const getCopDetail=(params)=>wxRequest(params,apiMall+"/qyb/cooperation/detail");
@@ -39,10 +42,22 @@ const getCotList=(params)=>wxRequest(params,apiMall+"/qyb/cooperation/findCotLis
 const getComInfo=(params)=>wxRequest(params,apiMall+"/qyb/company/info");
 
 
+//微信的jscode换取sessionKey
+const wxJsCode2Session = (params) => wxRequest(params, apiMall + "/qyb/wechat/jscode2session");
+
+
+const saveCooperation=(params)=>wxRequest(params,apiMall+"/qyb/cooperation/save");
+
+const saveCpy=(params)=>wxRequest(params,apiMall+"/qyb/company/save");
+
+const getAdvCount=(params)=>wxRequest(params,apiMall+"/qyb/user/getAdvCount");
+
+
+
 const getDiscoverList = (params) => wxRequest(params, apiMall + '/goods/list?cateidOne=1&cateidTwo=0&price=0&sales=2');
 
-//微信的jscode换取sessionKey
-const wxJsCode2Session = (params) => wxRequest(params, apiMall + "/api/wechat/jscode2session");
+
+
 const user2session = (params) => wxRequest(params, apiMall + "/api/wechat/user2session?jsoncallback=?");
 
 //商品接口---begin
@@ -109,8 +124,8 @@ const favoriteInfo = (params) => wxRequest(params, apiMall + '/api/goodsFavorite
 //用户消息
 const messageInfo = (params) => wxRequest(params, apiMall + '/api/systemMessage/messageInfo');
 
-//用户手机绑定
-const registerUser = (params) => wxRequest(params, apiMall + '/api/userCenter/register');
+/*//用户手机绑定
+const registerUser = (params) => wxRequest(params, apiMall + '/api/userCenter/register');*/
 //发送短信
 const sendRandCode = (params) => wxRequest(params, apiMall + '/api/sms/send');
 
@@ -173,6 +188,7 @@ const childGoodsCatetoryList = (params) => wxRequest(params, apiMall + '/api/mal
 const getAdList = (params) => wxRequest(params, apiMall + '/api/adverts/list');
 
 export default {
+  host,
 
   getCooperationList,
   getAdver,
@@ -182,9 +198,9 @@ export default {
   getUserList,
   getCotList,
   getComInfo,
-
-
-
+  saveCooperation,
+  saveCpy,
+  getAdvCount,
 
 
 

@@ -44,7 +44,7 @@ export default class Search extends wepy.component {
       this.show = param;
       this.$apply();
     }
-  }user
+  }
 
   onLoad() {
 

@@ -1,5 +1,154 @@
 <template>
 
+  <view style="background: #fff ;padding: 10px 20px;">
+    <image style="width: 57px;height: 57px;border-radius: 57px;" src="{{userInfo.avatar}}"></image>
+    <div style="position: absolute; width: 50%;height: 57px;padding-top: 10px;margin-left: 15px;">
+      <view style="color: #333333;font-weight: bold;font-size: 14px;"> {{userInfo.name}}
+        <image style="width: 40px;height: 18px; vertical-align: -3px;margin-left: 5px;" src="../images/name_vip.png"></image>
+      </view>
+      <view style="color: #333333;font-size: 12px;margin-top: 5px;">{{userInfo.position}}</view>
+    </div>
+  </view>
+
+  <swiper style="background: #fff;padding: 10px 0;" class="swiper" indicator-active-color="{{indicatorActiveColor}}" indicator-dots="{{indicatorDots}}"
+          duration="300" previous-margin="25px" bindchange="swChage">
+    <swiper-item>
+      <image model="scaleToFill" style=" width: 95%;height: 150px;" src="../images/me-jl.png" class="slide-image"/>
+    </swiper-item>
+    <swiper-item>
+      <image model="scaleToFill" style=" width: 95%;height: 150px;" src="../images/me-vip.png" class="slide-image"/>
+    </swiper-item>
+    <swiper-item>
+      <image model="scaleToFill" style=" width: 95%;height: 150px;" src="../images/me-svip.png" class="slide-image"/>
+    </swiper-item>
+    <swiper-item>
+      <image model="scaleToFill" style=" width: 95%;height: 150px;" src="../images/me-ssvip.png" class="slide-image"/>
+    </swiper-item>
+  </swiper>
+
+
+  <view style="background: #fff;padding-bottom: 20px;  " hidden="{{!card0}}">
+
+    <view style="color: #333333;font-weight: bold;padding: 10px 20px;">推广经理权限</view>
+    <view style="background: #fff ;padding: 10px 20px;">
+      <image style="width: 49px;height: 49px;border-radius: 49px;" src="../images/icon_card1.png"></image>
+      <div style="position: absolute; width: 50%;height: 49px;padding-top: 5px;margin-left: 15px;">
+        <view style="color: #333333;font-weight: bold;font-size: 14px;"> 专属VIP标识
+        </view>
+        <view style="color: #999999;font-size: 12px;margin-top: 5px;">专属VIP尊贵身份标识</view>
+      </div>
+    </view>
+    <view style="background: #fff ;padding: 10px 20px;">
+      <image style="width: 49px;height: 49px;border-radius: 49px;" src="../images/icon_card2.png"></image>
+      <div style="position: absolute; width: 50%;height: 49px;padding-top: 5px;margin-left: 15px;">
+        <view style="color: #333333;font-weight: bold;font-size: 14px;"> 直接推广用户注册会员可获得35%佣金
+        </view>
+        <view style="color: #999999;font-size: 12px;margin-top: 5px;">通过推广二维码注册会员可获得</view>
+      </div>
+    </view>
+    <view style="background: #fff ;padding: 10px 20px;">
+      <image style="width: 49px;height: 49px;border-radius: 49px;" src="../images/icon_card3.png"></image>
+      <div style="position: absolute; width: 50%;height: 49px;padding-top: 5px;margin-left: 15px;">
+        <view style="color: #333333;font-weight: bold;font-size: 14px;"> 间接推广用户注册会员可获得15%佣金
+        </view>
+        <view style="color: #999999;font-size: 12px;margin-top: 5px;">通过推广二维码注册会员可获得</view>
+      </div>
+    </view>
+  </view>
+
+  <view style="background: #fff;padding-bottom: 20px;  " hidden="{{!card1}}">
+
+    <view style="color: #333333;font-weight: bold;padding: 10px 20px;">VIP特权</view>
+    <view style="background: #fff ;padding: 10px 20px;">
+      <image style="width: 49px;height: 49px;border-radius: 49px;" src="../images/icon_card1.png"></image>
+      <div style="position: absolute; width: 50%;height: 49px;padding-top: 5px;margin-left: 15px;">
+        <view style="color: #333333;font-weight: bold;font-size: 14px;"> 专属VIP标识
+        </view>
+        <view style="color: #999999;font-size: 12px;margin-top: 5px;">专属VIP尊贵身份标识</view>
+      </div>
+    </view>
+    <view style="background: #fff ;padding: 10px 20px;">
+      <image style="width: 49px;height: 49px;border-radius: 49px;" src="../images/icon_card2.png"></image>
+      <div style="position: absolute; width: 50%;height: 49px;padding-top: 5px;margin-left: 15px;">
+        <view style="color: #333333;font-weight: bold;font-size: 14px;"> 50条广告
+        </view>
+        <view style="color: #999999;font-size: 12px;margin-top: 5px;">每月可发布50条广告信息</view>
+      </div>
+    </view>
+    <view style="background: #fff ;padding: 10px 20px;">
+      <image style="width: 49px;height: 49px;border-radius: 49px;" src="../images/icon_card3.png"></image>
+      <div style="position: absolute; width: 50%;height: 49px;padding-top: 5px;margin-left: 15px;">
+        <view style="color: #333333;font-weight: bold;font-size: 14px;"> 380个客户电话
+        </view>
+        <view style="color: #999999;font-size: 12px;margin-top: 5px;">每月可查看380条客户联系方式</view>
+      </div>
+    </view>
+  </view>
+
+
+  <view style="background: #fff;padding-bottom: 20px;  " hidden="{{!card2}}">
+
+    <view style="color: #333333;font-weight: bold;padding: 10px 20px;">SVIP特权</view>
+    <view style="background: #fff ;padding: 10px 20px;">
+      <image style="width: 49px;height: 49px;border-radius: 49px;" src="../images/icon_card1.png"></image>
+      <div style="position: absolute; width: 50%;height: 49px;padding-top: 5px;margin-left: 15px;">
+        <view style="color: #333333;font-weight: bold;font-size: 14px;"> 专属VIP标识
+        </view>
+        <view style="color: #999999;font-size: 12px;margin-top: 5px;">专属VIP尊贵身份标识</view>
+      </div>
+    </view>
+    <view style="background: #fff ;padding: 10px 20px;">
+      <image style="width: 49px;height: 49px;border-radius: 49px;" src="../images/icon_card2.png"></image>
+      <div style="position: absolute; width: 50%;height: 49px;padding-top: 5px;margin-left: 15px;">
+        <view style="color: #333333;font-weight: bold;font-size: 14px;"> 200条广告
+        </view>
+        <view style="color: #999999;font-size: 12px;margin-top: 5px;">每月可发布200条广告信息</view>
+      </div>
+    </view>
+    <view style="background: #fff ;padding: 10px 20px;">
+      <image style="width: 49px;height: 49px;border-radius: 49px;" src="../images/icon_card3.png"></image>
+      <div style="position: absolute; width: 50%;height: 49px;padding-top: 5px;margin-left: 15px;">
+        <view style="color: #333333;font-weight: bold;font-size: 14px;"> 1000个客户电话
+        </view>
+        <view style="color: #999999;font-size: 12px;margin-top: 5px;">每月可查看1000条客户联系方式</view>
+      </div>
+    </view>
+  </view>
+
+
+  <view style="background: #fff;padding-bottom: 20px;  " hidden="{{!card3}}">
+
+    <view style="color: #333333;font-weight: bold;padding: 10px 20px;">SSVIP特权</view>
+    <view style="background: #fff ;padding: 10px 20px;">
+      <image style="width: 49px;height: 49px;border-radius: 49px;" src="../images/icon_card1.png"></image>
+      <div style="position: absolute; width: 50%;height: 49px;padding-top: 5px;margin-left: 15px;">
+        <view style="color: #333333;font-weight: bold;font-size: 14px;"> 专属VIP标识
+        </view>
+        <view style="color: #999999;font-size: 12px;margin-top: 5px;">专属VIP尊贵身份标识</view>
+      </div>
+    </view>
+    <view style="background: #fff ;padding: 10px 20px;">
+      <image style="width: 49px;height: 49px;border-radius: 49px;" src="../images/icon_card2.png"></image>
+      <div style="position: absolute; width: 50%;height: 49px;padding-top: 5px;margin-left: 15px;">
+        <view style="color: #333333;font-weight: bold;font-size: 14px;"> 无限发布广告
+        </view>
+        <view style="color: #999999;font-size: 12px;margin-top: 5px;">每月无限制条数发布条广告信息</view>
+      </div>
+    </view>
+    <view style="background: #fff ;padding: 10px 20px;">
+      <image style="width: 49px;height: 49px;border-radius: 49px;" src="../images/icon_card3.png"></image>
+      <div style="position: absolute; width: 50%;height: 49px;padding-top: 5px;margin-left: 15px;">
+        <view style="color: #333333;font-weight: bold;font-size: 14px;"> 无限查看客户电话
+        </view>
+        <view style="color: #999999;font-size: 12px;margin-top: 5px;">每月不限制查看客户联系方式数量</view>
+      </div>
+    </view>
+  </view>
+<view style="background: #fff;width: 100%;height: 65px;">
+  <button formType="submit" style="text-align: center;width: 90%;height: 45px;background: #5EC6C6;line-height: 45px;font-size: 15px;color: #FFF;position: absolute;bottom: 10px;border-radius: 10px;margin-left: 20px;">
+    开通会员
+  </button>
+</view>
 
 </template>
 
@@ -13,10 +162,52 @@
     USER_INFO, USER_SPECICAL_INFO, QYB_INFO
   } from '@/utils/constant';
 
-
   export default class MemberCenter extends wepy.page {
     config = {
-      navigationBarTitleText: '公司详情',
+      navigationBarTitleText: '会员中心',
+    }
+    data = {
+      userInfo: {},
+      card0: true,
+      card1: false,
+      card2: false,
+      card3: false
+    }
+    methods = {
+      swChage(e) {
+        let that = this;
+        let current = e.detail.current;
+        this.current = current;
+        if (current == 1) {
+          that.card0 = false;
+          that.card1 = true;
+          that.card2 = false;
+          that.card3 = false;
+
+        } else if (current == 2) {
+          that.card0 = false;
+          that.card1 = false;
+          that.card2 = true;
+          that.card3 = false;
+        } else if (current == 3) {
+          that.card0 = false;
+          that.card1 = false;
+          that.card2 = false;
+          that.card3 = true;
+        } else {
+          that.card0 = true;
+          that.card1 = false;
+          that.card2 = false;
+          that.card3 = false;
+        }
+      }
+    }
+
+    onLoad() {
+      let that = this;
+      let userInfo = wepy.getStorageSync(QYB_INFO);
+      that.userInfo = userInfo;
+      that.$apply();
     }
   }
 

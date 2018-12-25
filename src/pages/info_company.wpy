@@ -1,0 +1,131 @@
+<template>
+  <form bindsubmit="formSubmit">
+    <view style="background: #fff;width: 100%;height: 100%;margin-top: 10px;">
+      <view style="" class="item">
+        <span style="">公司名称</span><input type="text" name="name" value="{{comInfo.name}}" placeholder="请输入公司名称"/>
+      </view>
+
+      <view style="border-top: 10px solid #f2f2f2;position: relative" class="item">
+        <span style="">公司LOGO</span>
+        <image type="text" name="title" style="width: 30px;height: 30px;border-radius: 30px;position: absolute;right: 50px;" src="{{comInfo.logo}}"/>
+      </view>
+      <view style="border-top: 10px solid #f2f2f2" class="item">
+        <span>所在城市</span><input type="text" value="{{comInfo.city}}" name="city" placeholder="请输入所在城市"/>
+      </view>
+      <view style="" class="item">
+        <span>所在行业</span><input type="text" value="{{comInfo.industry}}" name="industry" placeholder="请输入所在行业"/>
+      </view>
+      <!--      <view style="border-top: 10px solid #f2f2f2" class="item">
+              <span>公司名称</span><input type="text" name="area" placeholder="请输入公司名称"/>
+            </view>-->
+      <view style="" class="item">
+        <span>公司官网</span><input type="text" value="{{comInfo.site}}" name="site" placeholder="请输入公司网址"/>
+      </view>
+      <view style="height: 80px;" class="item">
+        <span style="float: left;">公司介绍</span><textarea name="introdction"
+                                                        style="float: left;width: 70%;margin-left: 20px;height: 80px;overflow: hidden;" type="text"
+                                                        placeholder="介绍您的公司（如行业、经营业务范围等，100字以内）" value="{{comInfo.introdction}}"/>
+      </view>
+    </view>
+    <button formType="submit"
+            style="text-align: center;width: 90%;height: 45px;background: #5EC6C6;line-height: 45px;font-size: 15px;color: #FFF;position: absolute;bottom: 10px;border-radius: 10px;margin-left: 20px;">
+      保存
+    </button>
+  </form>
+</template>
+
+<script>
+  import wepy from 'wepy';
+  import api from '@/api/api';
+  import tip from '@/utils/tip'
+  import {
+    USER_INFO, USER_SPECICAL_INFO, QYB_INFO
+  } from '@/utils/constant';
+
+  export default class InfoCompany extends wepy.page {
+    config = {
+      navigationBarTitleText: "公司信息"
+    }
+    data = {
+      comInfo: {},
+      companyId: ""
+    }
+    methods = {
+      formSubmit(e) {
+        let name = e.detail.value.name;
+        let city = e.detail.value.city;
+        let industry = e.detail.value.industry;
+        let site = e.detail.value.site;
+        let introdction=e.detail.value.introdction;
+        this.saveCpy(name,city,industry,site,introdction);
+      }
+    }
+
+
+    async getComInfo(companyId) {
+      let that = this;
+      const jComInfo = await api.getComInfo({
+        query: {
+          id: companyId
+        }
+      });
+
+      that.comInfo = jComInfo.data.data;
+      that.$apply();
+    }
+
+    async saveCpy(name,city,industry,site,introdction){
+      let that=this;
+      const json=await  api.saveCpy({
+        query:{
+          id:that.companyId,
+          name:name,
+          city:city,
+          industry:industry,
+          site:site,
+          introdction:introdction
+        },
+        method:'POST'
+      });
+      if(json.data.code==200){
+        tip.success("保存成功！");
+      }
+    }
+
+    onLoad() {
+      let that = this;
+      let qybInfo = wepy.getStorageSync(QYB_INFO);
+      that.companyId = qybInfo.company.id;
+      this.getComInfo(qybInfo.company.id);
+    }
+
+
+  }
+
+
+</script>
+
+
+<style lang="less">
+  .item {
+    height: 30px;
+    padding: 10px 17px 10px;
+    font-size: 14px;
+    line-height: 30px;
+    margin-bottom: 1px;
+    border-top: 1px solid #F2F2F2;
+  }
+
+  .item span {
+    color: #333333;
+  }
+
+  .item input {
+    color: black;
+    display: inline-block;
+    vertical-align: -7px;
+    margin-left: 20px;
+    width: 75%;
+  }
+</style>
+

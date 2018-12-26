@@ -4,7 +4,16 @@
       <navigator class="header_content" style="margin-left: 20px;" url="/pages/info_user">
         <image style="width: 57px;height: 57px;border-radius: 57px;" src="{{userInfo.avatar}}"></image>
         <div style="position: absolute; width: 50%;height: 57px;padding-top: 10px;margin-left: 15px;">
-          <view style="color: #333333;font-weight: bold;font-size: 14px;"> {{userInfo.name}} <image style="width: 40px;height: 18px; vertical-align: -3px;margin-left: 5px;" src="../images/name_vip.png"></image></view>
+          <view style="color: #333333;font-weight: bold;font-size: 14px;">
+            {{userInfo.name}}
+<!--
+            <div wx:if='{{userInfo.vipLevel==1}}' style="width: 60px;height: 18px;font-size: 10px; font-weight: normal; vertical-align: 1px;margin-left: 10px;color: #4bb3f5;border: 2px solid #4bb3f5;padding: 2px 7px; border-radius: 5px;" ></div>
+-->
+            <div wx:if='{{userInfo.vipLevel==2}}' style="width: 60px;height: 18px;font-size: 10px; font-weight: normal; vertical-align: 1px;margin-left: 10px;color: #4bb3f5;border: 2px solid #4bb3f5;padding: 2px 7px; border-radius: 5px;" >推广经理</div>
+            <div wx:if='{{userInfo.vipLevel==3}}'  style="width: 60px;height: 18px;font-size: 10px; font-weight: normal; vertical-align: 1px;margin-left: 10px;color: #FFAA62;border: 2px solid #FFAA62;padding: 2px 7px; border-radius: 5px;" >VIP</div>
+            <div wx:if='{{userInfo.vipLevel==4}}' style="width: 60px;height: 18px;font-size: 10px; font-weight: normal; vertical-align: 1px;margin-left: 10px;color: #E4686B;border: 2px solid #E4686B;padding: 2px 7px; border-radius: 5px;" >SVIP</div>
+            <div wx:if='{{userInfo.vipLevel==5}}' style="width: 60px;height: 18px;font-size: 10px; font-weight: normal; vertical-align: 1px;margin-left: 10px;color: #000;border: 2px solid #F7853F;padding: 2px 7px; border-radius: 5px;" >SSVIP</div>
+          </view>
           <view style="color: #333333;font-size: 12px;margin-top: 5px;">{{userInfo.position}}</view>
         </div>
         <image class="arrow" src="../images/icon_arrow.png" style="position: absolute;right: 20px; top: 45px;width: 15px;height: 20px;"></image>
@@ -24,12 +33,12 @@
           <view>{{userInfo.companion}}</view>
           <div>推荐人数</div>
         </div>
-<!--
-        <div class="member-column" style="">
-          <view>998.23</view>
-          <div>账户余额</div>
-        </div>
--->
+        <!--
+                <div class="member-column" style="">
+                  <view>998.23</view>
+                  <div>账户余额</div>
+                </div>
+        -->
 
       </view>
     </view>
@@ -46,7 +55,7 @@
             </navigator>-->
       <navigator class="item" url="/pages/order">
         <view class="item_content">
-         <!-- <image class="item_img" src="../images/icon_my_02.png"></image>-->
+          <!-- <image class="item_img" src="../images/icon_my_02.png"></image>-->
           <view class="text">我的消息</view>
         </view>
         <view class="arrow">&gt;</view>
@@ -59,40 +68,40 @@
 
       <navigator class="item" url="/pages/member_center">
         <view class="item_content">
-<!--
-          <image class="item_img" src="../images/icon_my_02.png"></image>
--->
+          <!--
+                    <image class="item_img" src="../images/icon_my_02.png"></image>
+          -->
           <view class="text">会员中心</view>
         </view>
         <view class="arrow">&gt;</view>
       </navigator>
       <navigator class="item" url="/pages/">
         <view class="item_content">
-<!--
-          <image class="item_img" src="../images/icon_my_03.png"></image>
--->
+          <!--
+                    <image class="item_img" src="../images/icon_my_03.png"></image>
+          -->
           <view class="text">我的团队</view>
         </view>
         <view class="arrow">&gt;</view>
       </navigator>
     </view>
 
-      <view class="info_block">
+    <view class="info_block">
 
       <navigator class="item" url="/pages/?type=0">
         <view class="item_content">
-<!--
-          <image class="item_img" src="../images/icon_my_04.png"></image>
--->
+          <!--
+                    <image class="item_img" src="../images/icon_my_04.png"></image>
+          -->
           <view class="text">我的发布</view>
         </view>
         <view class="arrow">&gt;</view>
       </navigator>
       <navigator class="item" url="/pages/info_company">
         <view class="item_content">
-<!--
-          <image class="item_img" src="../images/icon_my_05.png"></image>
--->
+          <!--
+                    <image class="item_img" src="../images/icon_my_05.png"></image>
+          -->
           <view class="text">我的公司</view>
         </view>
         <view class="arrow">&gt;</view>
@@ -102,9 +111,9 @@
     <view class="info_block">
       <navigator class="item" url="/pages/">
         <view class="item_content">
-<!--
-          <image class="item_img" src="../images/icon_my_06.png"></image>
--->
+          <!--
+                    <image class="item_img" src="../images/icon_my_06.png"></image>
+          -->
           <view class="text">我要推广赚钱</view>
         </view>
         <view class="arrow">&gt;</view>
@@ -117,7 +126,7 @@
   import api from '@/api/api';
   import tip from '@/utils/tip';
   import {
-    USER_INFO, USER_SPECICAL_INFO,QYB_INFO
+    USER_INFO, USER_SPECICAL_INFO, QYB_INFO
   } from '@/utils/constant';
 
   export default class Index extends wepy.page {
@@ -128,8 +137,8 @@
 
     data = {
       bShowBind: false,
-      userInfo:{},
-      speInfo:{}
+      userInfo: {},
+      speInfo: {}
     }
 
     async getUserInfo() {
@@ -139,11 +148,14 @@
           openid: that.speInfo.openid
         }
       });
-      console.log(json);
-      that.userInfo=json.data.data;
+      let data=json.data.data;
 
-      wepy.setStorageSync(QYB_INFO, that.userInfo);
-
+      if(data.vipLevel==5){
+        data.advCount ="无限制" ;
+        data.phCount ="无限制" ;
+      }
+      wepy.setStorageSync(QYB_INFO, data);
+      that.userInfo=data;
       if (json.data.code == 200) {
         that.$apply();
       } else {

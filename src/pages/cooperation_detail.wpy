@@ -1,12 +1,13 @@
 <template>
 
-  <navigator class="" style="padding : 20px;background: #fff" url="/pages/info_user">
+<!--  <navigator class="" style="padding : 20px;background: #fff" url="/pages/info_he?id={{copData.user.id}}">-->
+    <navigator class="" style="padding : 20px;background: #fff" >
     <image style="width: 34px;height: 34px;border-radius: 34px;" src="{{copData.user.avatar}}"></image>
     <div style="position: absolute; width: 50%;height: 34px;padding-top: -2px;margin-left: 15px;">
       <view style="color: #333333;font-weight: bold;font-size: 14px;"> {{copData.user.name}} <!--<image style="width: 40px;height: 18px; vertical-align: -3px;margin-left: 5px;" src="../images/name_vip.png"></image>--></view>
       <view style="color: #333333;font-size: 12px;margin-top: 5px;">{{copData.user.position}}</view>
     </div>
-    <image class="arrow" src="../images/icon_arrow.png" style="position: absolute;right: 20px; top: 35px;width: 15px;height: 20px;"></image>
+  <!--  <image class="arrow" src="../images/icon_arrow.png" style="position: absolute;right: 20px; top: 35px;width: 15px;height: 20px;"></image>-->
   </navigator>
   <view style="padding: 10px 20px;background: #fff ;border-top: 1px solid #f2f2f2;font-size: 15px;font-weight: bold;height: 70px;position: relative;overflow: hidden;">
     {{copData.offerResource}}

@@ -26,7 +26,6 @@
 
     <view style="font-weight: bold;font-size: 12px;color: #5EC6C6;padding: 10px 20px;background: #fff">他发布的资源</view>
 
-
     <view style="padding: 10px 20px;background: #fff;height: 60px;position: relative;">
       <view style="height: 20px;background: #fff;">
 
@@ -74,13 +73,13 @@
       that.companyInfo = ComInfo.data.data;
 
 
-      console.log(that.userInfo);
+      console.log(that.companyInfo);
       that.$apply();
     }
 
     onLoad(option) {
       let id = option.id;
-      this.getinfo("24823c2798d64813859c0bce95117475");
+      this.getinfo(id);
     }
 
 

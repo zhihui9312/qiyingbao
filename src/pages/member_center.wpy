@@ -144,11 +144,11 @@
       </div>
     </view>
   </view>
-<view style="background: #fff;width: 100%;height: 65px;">
-  <button formType="submit" style="text-align: center;width: 90%;height: 45px;background: #5EC6C6;line-height: 45px;font-size: 15px;color: #FFF;position: absolute;bottom: 10px;border-radius: 10px;margin-left: 20px;">
-    开通会员
-  </button>
-</view>
+  <view style="background: #fff;width: 100%;height: 65px;">
+    <button @tap="payment" style="text-align: center;width: 90%;height: 45px;background: #5EC6C6;line-height: 45px;font-size: 15px;color: #FFF;position: absolute;bottom: 10px;border-radius: 10px;margin-left: 20px;">
+      开通会员
+    </button>
+  </view>
 
 </template>
 
@@ -168,16 +168,65 @@
     }
     data = {
       userInfo: {},
+      specialInfo: {},
       card0: true,
       card1: false,
       card2: false,
-      card3: false
+      card3: false,
+      current:0
     }
+
+
+    async payPre() {
+      let that = this;
+
+      var total_fee=99;
+
+      if(that.current==0){
+          total_fee=99;
+      }else if(that.current==1){
+        total_fee=500;
+      }else if(that.current==2){
+        total_fee=1000;
+      }else if(that.current==3){
+        total_fee=1800;
+      }
+
+      const json = await  api.prepay({
+        query: {
+          openid: that.specialInfo.openid,
+          total_fee: total_fee+""
+        }
+      });
+      let preInfo=json.data.data;
+      console.log(preInfo);
+
+      wepy.requestPayment(
+        {
+          'appId':preInfo.appId,
+          'timeStamp': preInfo.timeStamp,
+          'nonceStr': preInfo.nonceStr,
+          'package': preInfo.package,
+          'signType': preInfo.signType,
+          'paySign': preInfo.paySign,
+          'success':function(res){
+            console.log("success")
+          },
+          'fail':function(res){
+            console.log("fail")
+          },
+          'complete':function(res){
+            console.log("complete")
+          }
+        })
+
+    }
+
     methods = {
       swChage(e) {
         let that = this;
         let current = e.detail.current;
-        this.current = current;
+        that.current = current;
         if (current == 1) {
           that.card0 = false;
           that.card1 = true;
@@ -200,12 +249,17 @@
           that.card2 = false;
           that.card3 = false;
         }
+        that.$apply();
+      },
+      payment() {
+        this.payPre();
       }
     }
 
     onLoad() {
       let that = this;
       let userInfo = wepy.getStorageSync(QYB_INFO);
+      that.specialInfo = wepy.getStorageSync(USER_SPECICAL_INFO);
       that.userInfo = userInfo;
       that.$apply();
     }

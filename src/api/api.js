@@ -4,8 +4,8 @@ import {
 
 let env = "-test" //-dev 或者 -test
 //const apiMall = 'https://sujiefs.com/'
- const apiMall = 'http://localhost:8181/qyb/f'
-//const apiMall = 'http://47.105.199.35/qyb/f'
+const apiMall = 'http://localhost:8181/qyb/f'
+  //const apiMall = 'http://47.105.199.35/qyb/f'
 const host='http://47.105.199.35';
 
 /**
@@ -51,6 +51,8 @@ const saveCooperation=(params)=>wxRequest(params,apiMall+"/qyb/cooperation/save"
 const saveCpy=(params)=>wxRequest(params,apiMall+"/qyb/company/save");
 
 const getAdvCount=(params)=>wxRequest(params,apiMall+"/qyb/user/getAdvCount");
+
+const prepay=(params)=>wxRequest(params,apiMall+"/qyb/wx/payment");
 
 
 
@@ -201,6 +203,7 @@ export default {
   saveCooperation,
   saveCpy,
   getAdvCount,
+  prepay,
 
 
 

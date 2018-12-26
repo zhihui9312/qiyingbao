@@ -10,12 +10,10 @@ import 'wepy-async-function'
 export default class extends wepy.app {
   config = {
     pages: [
-      'pages/info',
       'pages/authorize',
       'pages/home',
       'pages/home_detail',
       'pages/classify',
-
       'pages/search',
       'pages/info_user',
       'pages/cooperation_detail',
@@ -24,6 +22,7 @@ export default class extends wepy.app {
       'pages/info_company',
       'pages/member_center',
       'pages/info_he',
+      'pages/info',
     ],
     window: {
       backgroundTextStyle: 'dark',

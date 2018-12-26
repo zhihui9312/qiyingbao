@@ -83,8 +83,8 @@
 
     onLoad(option) {
       this.copId = option.copId;
-      //this.copId = "1";
       this.getDetail(this.copId)
+      this.updateViews(this.copId)
     }
 
     async getDetail(id) {
@@ -103,8 +103,13 @@
       that.copData = json.data.data;
       that.$apply();
     }
-
-
+    async updateViews(id){
+      const json=await api.updateViews({
+        query:{
+          id:id
+        }
+      });
+    }
   }
 
 

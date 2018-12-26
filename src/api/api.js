@@ -54,6 +54,8 @@ const getAdvCount=(params)=>wxRequest(params,apiMall+"/qyb/user/getAdvCount");
 
 const prepay=(params)=>wxRequest(params,apiMall+"/qyb/wx/payment");
 
+const updateViews=(params)=>wxRequest(params,apiMall+"/qyb/updateViews");
+
 
 
 const getDiscoverList = (params) => wxRequest(params, apiMall + '/goods/list?cateidOne=1&cateidTwo=0&price=0&sales=2');
@@ -204,7 +206,7 @@ export default {
   saveCpy,
   getAdvCount,
   prepay,
-
+  updateViews,
 
 
 

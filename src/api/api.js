@@ -4,9 +4,9 @@ import {
 
 let env = "-test" //-dev 或者 -test
 //const apiMall = 'https://sujiefs.com/'
-const apiMall = 'http://localhost:8181/qyb/f'
-  //const apiMall = 'http://47.105.199.35/qyb/f'
-const host='http://47.105.199.35';
+//const apiMall = 'http://localhost:8181/qyb/f'
+  const apiMall = 'https://www.st-serve.cn/qyb/f'
+const host='https://www.st-serve.cn';
 
 /**
  * 获取发现好商品接口
@@ -55,6 +55,8 @@ const getAdvCount=(params)=>wxRequest(params,apiMall+"/qyb/user/getAdvCount");
 const prepay=(params)=>wxRequest(params,apiMall+"/qyb/wx/payment");
 
 const updateViews=(params)=>wxRequest(params,apiMall+"/qyb/updateViews");
+
+const saveUserInfo=(params)=>wxRequest(params,apiMall+"/qyb/user/save");
 
 
 
@@ -206,6 +208,7 @@ export default {
   saveCpy,
   getAdvCount,
   prepay,
+  saveUserInfo,
   updateViews,
 
 

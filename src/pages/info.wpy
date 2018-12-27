@@ -164,6 +164,7 @@
       that.showLoading = false;
     }
 
+
     onLoad() {
       let that = this;
       that.speInfo = wepy.getStorageSync(USER_SPECICAL_INFO);
@@ -171,7 +172,10 @@
     }
 
     onShow() {
-
+      let that=this;
+      let userInfo = wepy.getStorageSync(QYB_INFO);
+      this.userInfo = userInfo;
+      that.$apply();
     }
 
     computed = {}

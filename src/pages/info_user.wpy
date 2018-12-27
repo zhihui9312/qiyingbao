@@ -1,36 +1,37 @@
 <template style="background: #F2F2F2">
+  <form bindsubmit="formSubmit">
+    <view style="margin:10px 0;position: relative;background: #fff;height: 50px;padding: 15px 0 0 15px;">
+      <image src="{{userInfo.avatar}}" style="width: 37px;height: 37px;border-radius: 37px;"></image>
+      <image class="arrow" src="../images/icon_arrow.png" style="float:right;width: 15px;height: 20px;padding-right: 15px;padding-top: 5px;"></image>
+      <div style="float:right;padding-right: 25px;vertical-align: 10px;padding-top: 5px;color: #999999;font-size: 14px;">上传头像
+      </div>
+    </view>
 
-  <view style="margin:10px 0;position: relative;background: #fff;height: 50px;padding: 15px 0 0 15px;">
-    <image src="{{userInfo.avatar}}" style="width: 37px;height: 37px;border-radius: 37px;"></image>
-    <image class="arrow" src="../images/icon_arrow.png" style="float:right;width: 15px;height: 20px;padding-right: 15px;padding-top: 5px;"></image>
-    <div style="float:right;padding-right: 25px;vertical-align: 10px;padding-top: 5px;color: #999999;font-size: 14px;">上传头像
-    </div>
-  </view>
+    <view style="margin:10px 0;position: relative;background: #fff;height: 35px;padding: 10px 0 0 15px;">
+      <span style="float: left;color: #333333;padding-top: 3px; width: 60px;">昵称</span>
+      <input type="text" placeholder="请输入昵称" name="name" style="width: 70%;float: left;margin-left: 15px; " value="{{userInfo.name}}"/>
+    </view>
+    <view style="position: relative;background: #fff;height: 35px;padding: 10px 0 0 15px;">
+      <span style="float: left;color: #333333;padding-top: 3px;width: 60px;">手机号码</span>
+      <input type="text" placeholder="请输入手机号码" name="mobile" style="width: 70%;float: left;margin-left: 15px;" value="{{userInfo.mobile}}"/>
+    </view>
+    <view style="border-top: 1px solid #f2f2f2;position: relative;background: #fff;height: 35px;padding: 10px 0 0 15px;">
+      <span style="float: left;color: #333333;padding-top: 3px;width: 60px;">微信号</span>
+      <input type="text" placeholder="请输入微信号" name="wechatAccount" style="width: 70%;float: left;margin-left: 15px;" value="{{userInfo.wechatAccount}}"/>
+    </view>
+    <view style="margin:10px 0 0 0 ;position: relative;background: #fff;height: 35px;padding: 10px 0 0 15px;">
+      <span style="float: left;color: #333333;padding-top: 3px;width: 60px;">公司名称</span>
+      <input type="text" placeholder="" disabled="true" style="width: 70%;float: left;margin-left: 15px;" value="{{userInfo.company.name}}"/>
+    </view>
+    <view style="border-top: 1px solid #f2f2f2;position: relative;background: #fff;height: 35px;padding: 10px 0 0 15px;">
+      <span style="float: left;color: #333333;padding-top: 3px;width: 60px;">我的职位</span>
+      <input type="text" placeholder="请输入职位" name="position" style="width: 70%;float: left;margin-left: 15px;" value="{{userInfo.position}}"/>
+    </view>
 
 
-  <view style="margin:10px 0;position: relative;background: #fff;height: 35px;padding: 10px 0 0 15px;">
-    <span style="float: left;color: #333333;padding-top: 3px; width: 60px;">昵称</span>
-    <input type="text" placeholder="请输入昵称" style="width: 70%;float: left;margin-left: 15px; " value="{{userInfo.name}}"/>
-  </view>
-  <view style="position: relative;background: #fff;height: 35px;padding: 10px 0 0 15px;">
-    <span style="float: left;color: #333333;padding-top: 3px;width: 60px;">手机号码</span>
-    <input type="text" placeholder="请输入手机号码" style="width: 70%;float: left;margin-left: 15px;"value="{{userInfo.mobile}}"/>
-  </view>
-  <view style="border-top: 1px solid #f2f2f2;position: relative;background: #fff;height: 35px;padding: 10px 0 0 15px;">
-    <span style="float: left;color: #333333;padding-top: 3px;width: 60px;">微信号</span>
-    <input type="text" placeholder="请输入微信号" style="width: 70%;float: left;margin-left: 15px;"value="{{userInfo.name}}"/>
-  </view>
-  <view style="margin:10px 0 0 0 ;position: relative;background: #fff;height: 35px;padding: 10px 0 0 15px;">
-    <span style="float: left;color: #333333;padding-top: 3px;width: 60px;">公司名称</span>
-    <input type="text" placeholder="请输入公司名称" disabled="true" style="width: 70%;float: left;margin-left: 15px;"value="{{userInfo.company.name}}"/>
-  </view>
-  <view style="border-top: 1px solid #f2f2f2;position: relative;background: #fff;height: 35px;padding: 10px 0 0 15px;">
-    <span style="float: left;color: #333333;padding-top: 3px;width: 60px;">我的职位</span>
-    <input type="text" placeholder="请输入职位"style="width: 70%;float: left;margin-left: 15px;"value="{{userInfo.position}}"/>
-  </view>
+    <button formType="submit" style="width: 90%; margin-left: 5%; text-align: center;background: #5EC6C6 ; font-size: 15px; height: 45px; color: #fff;line-height: 45px;border-radius: 10px;position: absolute;bottom: 15px;">保存</button>
 
-
-  <view style="width: 90%; margin-left: 5%; text-align: center;background: #5EC6C6 ; font-size: 15px; height: 45px; color: #fff;line-height: 45px;border-radius: 10px;position: absolute;bottom: 15px;">保存</view>
+  </form>
 </template>
 
 
@@ -54,6 +55,49 @@
       let userInfo = wepy.getStorageSync(QYB_INFO);
       console.log(userInfo);
       this.userInfo = userInfo;
+    }
+
+    methods = {
+      formSubmit(e) {
+
+        let name = e.detail.value.name;
+        let mobile = e.detail.value.mobile;
+        let wechatAccount = e.detail.value.wechatAccount;
+        let position = e.detail.value.position;
+
+        this.saveUser(name, mobile, wechatAccount, position);
+      }
+
+    }
+
+    async saveUser(name, mobile, wechatAccount, position) {
+      let that = this;
+      const json = await api.saveUserInfo({
+        query: {
+          id: that.userInfo.id,
+          name: name,
+          mobile: mobile,
+          wechatAccount: wechatAccount,
+          position: position
+        }
+      });
+      if(json.data.code==200){
+        tip.success("保存成功!");
+      }
+
+      const json2 = await api.getUserInfo({
+        query: {
+          id: that.userInfo.id,
+        }
+      });
+      let data=json2.data.data;
+
+      if(data.vipLevel==5){
+        data.advCount ="无限制" ;
+        data.phCount ="无限制" ;
+      }
+      wepy.setStorageSync(QYB_INFO, data);
+
     }
 
 

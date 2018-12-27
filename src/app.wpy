@@ -33,25 +33,25 @@ export default class extends wepy.app {
       backgroundColor: '#EFEFEF'
     },
     "tabBar": {
-      "color": "#999999",
-      "selectedColor": "#ff6a3c",
+      "color": "#C7C7C7",
+      "selectedColor": "#5EC6C6",
       "backgroundColor": "#ffffff",
       "borderStyle": "black",
       "list": [{
         "pagePath": "pages/home",
         "text": "谈合作",
-        "iconPath": "images/icon_home.png",
-        "selectedIconPath": "images/icon_home_active.png"
+        "iconPath": "images/icon_index.png",
+        "selectedIconPath": "images/icon_index_active.png"
       }, {
         "pagePath": "pages/classify",
         "text": "找企业",
-        "iconPath": "images/icon_classify.png",
-        "selectedIconPath": "images/icon_classify_active.png"
+        "iconPath": "images/icon_company.png",
+        "selectedIconPath": "images/icon_company_active.png"
       }, {
         "pagePath": "pages/info",
         "text": "我的",
-        "iconPath": "images/icon_info.png",
-        "selectedIconPath": "images/icon_info_active.png"
+        "iconPath": "images/icon_user.png",
+        "selectedIconPath": "images/icon_user_active.png"
       }]
     }
   }

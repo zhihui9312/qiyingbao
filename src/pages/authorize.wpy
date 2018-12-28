@@ -23,8 +23,17 @@
     config = {
       navigationBarTitleText: '授权登录',
     }
+    data = {
+      scene: ""
+    }
 
-    async onLoad() {
+    async onLoad(query) {
+      let that=this;
+      if(query.scene){
+        const scene = decodeURIComponent(query.scene);
+        that.scene=scene;
+        that.$apply();
+      }
       let res = await wepy.getSetting()
       if ((res.authSetting)['scope.userInfo']) {
         let userInfo = wepy.getStorageSync(USER_INFO)
@@ -51,29 +60,20 @@
               if (data.data.openid) {
                 console.log(data.data.openid);
 
-                let openid = data.data.openid;
+                const openid = data.data.openid;
 
-                let userInfo = await api.getUserInfo({
+                const userInfo = await api.getUserInfo({
                   query: {
                     openid: openid
                   }
                 });
 
-                const json = await api.getUserInfo({
-                  query: {
-                    openid: openid
-                  }
-                });
-                wepy.setStorageSync(QYB_INFO, json.data.data);
+                wepy.setStorageSync(QYB_INFO, userInfo.data.data);
+
+                if (userInfo.data.data) {
 
 
-
-                if(userInfo.data.data){
-
-
-
-
-                }else{
+                } else {
 
                 }
 
@@ -93,7 +93,9 @@
     }
 
     async onGotUserInfo(e) {
-      console.log("hhhhhh")
+      let that=this;
+
+
       if (e.detail.errMsg == 'getUserInfo:ok') {
         let res = await wepy.login();
         if (res.code) {
@@ -119,28 +121,36 @@
                 }
               });
 
-              if(userInfo.data.data){
+              if (userInfo.data.data) {
 
-              }else {
+              } else {
                 let data = wepy.getStorageSync(USER_INFO)
                 console.log(data);
-                let reg=await api.registerUser({
-                  query:{
-                    openid:openid,
-                    avatar:data.avatarUrl,
-                    country:data.country,
-                    province:data.province,
-                    city:data.city,
-                    name:data.nickName,
-                  }
-                })
-
-                const json = await api.getUserInfo({
+                let reg = await api.registerUser({
                   query: {
-                    openid: openid
+                    openid: openid,
+                    avatar: data.avatarUrl,
+                    country: data.country,
+                    province: data.province,
+                    city: data.city,
+                    name: data.nickName,
                   }
                 });
-                wepy.setStorageSync(QYB_INFO, json.data.data);
+
+
+                let reg = await api.registerUser({
+                  query: {
+                    openid: openid,
+                    avatar: data.avatarUrl,
+                    country: data.country,
+                    province: data.province,
+                    city: data.city,
+                    name: data.nickName,
+                  }
+                });
+
+
+                wepy.setStorageSync(QYB_INFO, userInfo.data.data);
 
               }
               wepy.switchTab({
@@ -158,7 +168,6 @@
               })
             }
           }
-
         }
       }
     }

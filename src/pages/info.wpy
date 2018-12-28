@@ -33,12 +33,11 @@
           <view>{{userInfo.companion}}</view>
           <div>推荐人数</div>
         </div>
-        <!--
+
                 <div class="member-column" style="">
-                  <view>998.23</view>
+                  <view>{{userInfo.balance}}</view>
                   <div>账户余额</div>
                 </div>
-        -->
 
       </view>
     </view>
@@ -189,7 +188,7 @@
   .member-column {
     float: left;
     text-align: center;
-    width: 33.3%;
+    width: 25%;
   }
 
   .bottom-line {

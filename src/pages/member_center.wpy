@@ -183,13 +183,17 @@
       var total_fee=99;
 
       if(that.current==0){
-          total_fee=99;
+         // total_fee=99;
+        total_fee=1;
       }else if(that.current==1){
-        total_fee=500;
+       // total_fee=500;
+        total_fee=2;
       }else if(that.current==2){
-        total_fee=1000;
+        //total_fee=1000;
+        total_fee=3;
       }else if(that.current==3){
-        total_fee=1800;
+       // total_fee=1800;
+        total_fee=4;
       }
 
       const json = await  api.prepay({

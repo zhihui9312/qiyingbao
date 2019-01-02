@@ -108,12 +108,11 @@
 
 <style lang="less">
   .item {
-    height: 30px;
-    padding: 10px 17px 10px;
-    font-size: 14px;
-    line-height: 30px;
-    margin-bottom: 1px;
-    border-top: 1px solid #F2F2F2;
+    height: 60rpx;
+    padding: 25rpx 15rpx 15rpx 40rpx;
+    font-size: 13px;
+    margin-bottom: 1rpx;
+    border-top: 1rpx solid #F2F2F2;
   }
 
   .item span {

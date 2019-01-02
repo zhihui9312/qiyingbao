@@ -1,5 +1,5 @@
 <template>
-  <view class="container">
+  <view>
     <swiper class="swiper" indicator-active-color="{{indicatorActiveColor}}" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="true">
       <block wx:for="{{adList}}" wx:key="key">
         <swiper-item>
@@ -14,13 +14,16 @@
     <!--暂无数据显示-->
     <placeholder :show.sync="is_empty" message="暂无发现数据"></placeholder>
     <!--弹屏  types:0 图片  1：领红包   show 是否显示  @close 关闭回调  @callback 点击图片回调 或确定回调-->
+<!--
 
     <bombscreen :types.sync="tps" :show.sync="is_show_alert" @close.user="closeAlert" @callback.user="alertCallback"></bombscreen>
+-->
 
     <navigator style="position: fixed;right: 10px;bottom: 10px;border-radius: 70px;width: 70px;height: 70px;" url="/pages/copperation_add">
       <image style="width: 70px;height: 70px;" src="../images/icon_publish.png"></image>
 
     </navigator>
+
 
   </view>
 </template>
@@ -114,11 +117,17 @@
       }
     }
 
+    onShow(){
+      let that=this;
+      that.discoverList=[];
+      that.$apply();
+      this.getDiscoverList();
+    }
+
     onLoad() {
       let that = this;
-      that.discoverList = [];
-      that.getDiscoverList();
-      that.getAdList();
+      //this.onShow();
+      this.getAdList();
     }
     computed = {}
     methods = {

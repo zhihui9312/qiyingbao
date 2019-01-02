@@ -24,27 +24,52 @@
       navigationBarTitleText: '授权登录',
     }
     data = {
-      scene: ""
+      scene: "",
+      userInfo: {}
+    }
+
+    async saveRecommend(openid) {
+
+      let that = this;
+
+
+      let userInfo = await api.getUserInfo({
+        query: {
+          openid: openid
+        }
+      });
+
+      wepy.setStorageSync(QYB_INFO, userInfo.data.data);
+
+      const json = await api.saveRecommend({
+        query: {
+          referrerUserId: that.scene,
+          applicantUserId: userInfo.data.data.id
+        }
+      });
+      wepy.switchTab({
+        url: '/pages/home'
+      })
+      that.$apply();
     }
 
     async onLoad(query) {
-      let that=this;
-      if(query.scene){
+      let that = this;
+      if (query.scene) {
         const scene = decodeURIComponent(query.scene);
-        that.scene=scene;
-        that.$apply();
+        that.scene = scene;
       }
-      let res = await wepy.getSetting()
+      that.$apply();
+      let res = await wepy.getSetting();
       if ((res.authSetting)['scope.userInfo']) {
-        let userInfo = wepy.getStorageSync(USER_INFO)
+        let userInfo = wepy.getStorageSync(USER_INFO);
         //if (!userInfo.nickName) {
         if (true) {
           let data = await wepy.getUserInfo();
           if (data) {
-            wepy.setStorageSync(USER_INFO, data.userInfo)
+            wepy.setStorageSync(USER_INFO, data.userInfo);
           }
-          let res = await wepy.login()
-          console.log(res);
+          let res = await wepy.login();
           if (res.code) {
             let systemInfo = wepy.getSystemInfoSync();
             wepy.setStorageSync(SYSTEM_INFO, systemInfo);
@@ -53,32 +78,22 @@
                 jsCode: res.code,
                 nickName: data.userInfo.nickName
               }
-            })
-            console.log(rlt);
+            });
             if (rlt.data.code == 200) {
               let data = rlt.data;
               if (data.data.openid) {
-                console.log(data.data.openid);
 
                 const openid = data.data.openid;
 
-                const userInfo = await api.getUserInfo({
+                const json = await api.getUserInfo({
                   query: {
                     openid: openid
                   }
                 });
 
-                wepy.setStorageSync(QYB_INFO, userInfo.data.data);
+                that.userInfo = json.data.data;
 
-                if (userInfo.data.data) {
-
-
-                } else {
-
-                }
-
-
-                console.log(userInfo);
+                wepy.setStorageSync(QYB_INFO, json.data.data);
 
 
                 wepy.setStorageSync(USER_SPECICAL_INFO, data.data);
@@ -90,11 +105,12 @@
           url: '/pages/home'
         })
       }
+
+
     }
 
     async onGotUserInfo(e) {
-      let that=this;
-
+      let that = this;
 
       if (e.detail.errMsg == 'getUserInfo:ok') {
         let res = await wepy.login();
@@ -126,36 +142,30 @@
               } else {
                 let data = wepy.getStorageSync(USER_INFO)
                 console.log(data);
-                let reg = await api.registerUser({
-                  query: {
+
+                let res = wx.request({
+                  url: 'http://localhost:8181/qyb/f/qyb/register',
+                  method: 'GET',
+                  data: {
                     openid: openid,
                     avatar: data.avatarUrl,
                     country: data.country,
                     province: data.province,
                     city: data.city,
                     name: data.nickName,
+                  },
+                  header: {'Content-Type': 'application/json'},
+                  success(res) {
+                    that.saveRecommend(openid);
                   }
                 });
 
+                /*
+                                */
 
-                let reg = await api.registerUser({
-                  query: {
-                    openid: openid,
-                    avatar: data.avatarUrl,
-                    country: data.country,
-                    province: data.province,
-                    city: data.city,
-                    name: data.nickName,
-                  }
-                });
-
-
-                wepy.setStorageSync(QYB_INFO, userInfo.data.data);
 
               }
-              wepy.switchTab({
-                url: '/pages/home'
-              })
+
             }
           } else {
             let res = await wepy.showModal({
@@ -186,6 +196,7 @@
     background: #fff;
     text-align: center;
     padding-top: 40px;
+
     .authorize-icon {
       width: 80px;
       height: 80px;
@@ -193,9 +204,11 @@
       margin: 0 auto;
       padding-bottom: 10px;
     }
+
     .auth-item {
       padding: 5px 0;
     }
+
     .btn-authorize {
       margin: 40px 40px;
     }

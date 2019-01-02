@@ -1,5 +1,5 @@
 <template>
-  <view class="info" style="background: #F2F2F2">
+  <view style="background: #F2F2F2">
     <view class="header">
       <navigator class="header_content" style="margin-left: 20px;" url="/pages/info_user">
         <image style="width: 57px;height: 57px;border-radius: 57px;" src="{{userInfo.avatar}}"></image>
@@ -171,10 +171,11 @@
     }
 
     onShow() {
-      let that=this;
+      this.getUserInfo();
+/*      let that=this;
       let userInfo = wepy.getStorageSync(QYB_INFO);
       this.userInfo = userInfo;
-      that.$apply();
+      that.$apply();*/
     }
 
     computed = {}

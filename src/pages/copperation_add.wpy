@@ -2,30 +2,30 @@
   <form bindsubmit="formSubmit">
     <view style="background: #fff">
       <view
-        style="background-color: #EEEEEE;color: #999999;font-size: 12px;height: 33px;line-height: 33px;padding-left: 13px;">
+        style="background-color: #EEEEEE;color: #999999;font-size: 12px;height: auto;padding: 15rpx 15rpx 15rpx 25rpx">
         所有合作信息均由专人审核，禁止发布广告及业务宣传信息
       </view>
 
       <view style="" class="item">
-        <span style="">合作标题</span><input type="text" name="title" style="" placeholder="请输入标题内容(30字以内)"/>
+        <label style="">合作标题</label><input type="text" name="title" style="" placeholder="请输入标题内容(30字以内)"/>
       </view>
 
       <view style="" class="item">
-        <span>合作方式</span><input type="text" name="way" placeholder="请输入合作方式"/>
+        <label>合作方式</label><input type="text" name="way" placeholder="请输入合作方式"/>
       </view>
 
       <view style="" class="item">
-        <span>合作地区</span><input type="text" name="area" placeholder="请输入合作地区"/>
+        <label>合作地区</label><input type="text" name="area" placeholder="请输入合作地区"/>
       </view>
-      <view style="height: 80px;border-top: 1px solid #F2F2F2;color: #333333;font-size: 14px;padding: 10px 17px 0;"
+      <view style="height: 80rpx;border-top: 1rpx solid #F2F2F2;color: #333333;font-size: 13px;padding: 25rpx;"
             class="">
-        <span style="float: left;">业务介绍</span><textarea name="offerResource"
-                                                        style="float: left;width: 70%;margin-left: 20px;height: 80px;overflow: hidden;" type="text"
+        <label style="float: left;">业务介绍</label><textarea name="offerResource"
+                                                        style="width: 70%;padding-left: 40rpx;height: 80px;overflow: hidden;" type="text"
                                                         placeholder="介绍您的业务描述（如行业、经营业务范 围等，100字以内）"/>
       </view>
     </view>
     <button formType="submit"
-            style="text-align: center;width: 90%;height: 45px;background: #5EC6C6;line-height: 45px;font-size: 15px;color: #FFF;position: absolute;bottom: 10px;border-radius: 10px;margin-left: 20px;">
+            style="text-align: center;width: 90%;height: 45px;background: #5EC6C6;line-height: 45px;font-size: 15px;color: #FFF;position: absolute;bottom: 10px;border-radius: 10px;left: 5%;">
       确定发布
     </button>
   </form>
@@ -120,9 +120,13 @@
           return;
         }
 
+       let speInfo = wepy.getStorageSync(QYB_INFO);
+       if( speInfo.vipLevel<3){
+         tip.error("暂无发布权限，请先开通会员服务！");
+       }else{
+         this.getAdvCount(title, way, area, offerResource);
 
-        this.getAdvCount(title, way, area, offerResource);
-
+       }
 
       }
     }
@@ -137,23 +141,26 @@
 
 <style lang="less">
   .item {
-    height: 40px;
-    padding: 10px 17px 0;
-    font-size: 14px;
-    line-height: 40px;
-    margin-bottom: 1px;
-    border-top: 1px solid #F2F2F2;
+    height: 50rpx;
+    padding: 25rpx;
+    font-size: 13px;
+    margin-bottom: 1rpx;
+    border-top: 1rpx solid #F2F2F2;
   }
 
-  .item span {
+  .item label {
     color: #333333;
+    float: left;
+    height: 50rpx;
+    line-height: 50rpx;
   }
 
   .item input {
+    float: left;
     color: black;
-    display: inline-block;
-    vertical-align: -7px;
-    margin-left: 20px;
-    width: 75%;
+    margin-left: 40rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    width: 60%;
   }
 </style>

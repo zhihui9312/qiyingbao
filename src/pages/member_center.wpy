@@ -1,154 +1,67 @@
 <template>
 
-  <view style="background: #fff ;padding: 10px 20px;">
-    <image style="width: 57px;height: 57px;border-radius: 57px;" src="{{userInfo.avatar}}"></image>
-    <div style="position: absolute; width: 50%;height: 57px;padding-top: 10px;margin-left: 15px;">
+  <view style="background: #fff ;padding: 20rpx 35rpx;">
+    <image style="width: 100rpx;height: 100rpx;border-radius: 100rpx;" src="{{userInfo.avatar}}"></image>
+    <div style="position: absolute; width: 50%;height: 57px;padding-top: 10rpx;margin-left: 30rpx;">
       <view style="color: #333333;font-weight: bold;font-size: 14px;"> {{userInfo.name}}
-        <image style="width: 40px;height: 18px; vertical-align: -3px;margin-left: 5px;" src="../images/name_vip.png"></image>
+        <!--        <image style="width: 40px;height: 18px; vertical-align: -3px;margin-left: 5px;" src="../images/name_vip.png"></image>-->
       </view>
-      <view style="color: #333333;font-size: 12px;margin-top: 5px;">{{userInfo.position}}</view>
+      <view style="color: #333333;font-size: 12px;margin-top: 5rpx;">{{userInfo.position}}</view>
     </div>
   </view>
 
-  <swiper style="background: #fff;padding: 10px 0;" class="swiper" indicator-active-color="{{indicatorActiveColor}}" indicator-dots="{{indicatorDots}}"
-          duration="300" previous-margin="25px" bindchange="swChage">
+  <swiper style="background: #fff;padding: 10rpx 0;" class="swiper" indicator-active-color="{{indicatorActiveColor}}"
+          indicator-dots="{{indicatorDots}}"
+          duration="350" previous-margin="15rpx" bindchange="swChage">
     <swiper-item>
-      <image model="scaleToFill" style=" width: 95%;height: 150px;" src="../images/me-jl.png" class="slide-image"/>
+      <image model="scaleToFill" style=" width: 100%;height: 300rpx;" src="../images/me-jl.png" class="slide-image"/>
     </swiper-item>
     <swiper-item>
-      <image model="scaleToFill" style=" width: 95%;height: 150px;" src="../images/me-vip.png" class="slide-image"/>
+      <image model="scaleToFill" style=" width: 100%;height: 300rpx;" src="../images/me-vip.png" class="slide-image"/>
     </swiper-item>
     <swiper-item>
-      <image model="scaleToFill" style=" width: 95%;height: 150px;" src="../images/me-svip.png" class="slide-image"/>
+      <image model="scaleToFill" style=" width: 100%;height: 300rpx;" src="../images/me-svip.png" class="slide-image"/>
     </swiper-item>
     <swiper-item>
-      <image model="scaleToFill" style=" width: 95%;height: 150px;" src="../images/me-ssvip.png" class="slide-image"/>
+      <image model="scaleToFill" style=" width: 100%;height: 300rpx;" src="../images/me-ssvip.png" class="slide-image"/>
     </swiper-item>
   </swiper>
 
+  <view style="background: #fff;padding : 20rpx 35rpx; margin-top: -20rpx; " hidden="{{!card0}}">
+    <view style="color: #333333;font-weight: bold;">{{currData.title0}}</view>
 
-  <view style="background: #fff;padding-bottom: 20px;  " hidden="{{!card0}}">
 
-    <view style="color: #333333;font-weight: bold;padding: 10px 20px;">推广经理权限</view>
-    <view style="background: #fff ;padding: 10px 20px;">
-      <image style="width: 49px;height: 49px;border-radius: 49px;" src="../images/icon_card1.png"></image>
-      <div style="position: absolute; width: 50%;height: 49px;padding-top: 5px;margin-left: 15px;">
-        <view style="color: #333333;font-weight: bold;font-size: 14px;"> 专属VIP标识
+    <view style="background: #fff ;padding: 20rpx 0;">
+      <image style="width: 80rpx;height: 80rpx;border-radius: 49px;" src="../images/icon_card1.png"></image>
+      <div style="position: absolute; width: 80%;height: 49rpx;padding-top: 5rpx;margin-left: 15rpx;">
+        <view style="color: #333333;font-weight: bold;font-size: 12px;"> {{currData.title1}}
         </view>
-        <view style="color: #999999;font-size: 12px;margin-top: 5px;">专属VIP尊贵身份标识</view>
+        <view style="color: #999999;font-size: 12px;margin-top: 5rpx;">{{currData.title2}}</view>
       </div>
     </view>
-    <view style="background: #fff ;padding: 10px 20px;">
-      <image style="width: 49px;height: 49px;border-radius: 49px;" src="../images/icon_card2.png"></image>
-      <div style="position: absolute; width: 50%;height: 49px;padding-top: 5px;margin-left: 15px;">
-        <view style="color: #333333;font-weight: bold;font-size: 14px;"> 直接推广用户注册会员可获得35%佣金
+
+    <view style="background: #fff ;padding: 20rpx 0;">
+      <image style="width: 80rpx;height: 80rpx;border-radius: 49px;" src="../images/icon_card1.png"></image>
+      <div style="position: absolute; width: 80%;height: 49rpx;padding-top: 5rpx;margin-left: 15rpx;">
+        <view style="color: #333333;font-weight: bold;font-size: 12px;">{{currData.title3}}
         </view>
-        <view style="color: #999999;font-size: 12px;margin-top: 5px;">通过推广二维码注册会员可获得</view>
+        <view style="color: #999999;font-size: 12px;margin-top: 5rpx;">{{currData.title4}}</view>
       </div>
     </view>
-    <view style="background: #fff ;padding: 10px 20px;">
-      <image style="width: 49px;height: 49px;border-radius: 49px;" src="../images/icon_card3.png"></image>
-      <div style="position: absolute; width: 50%;height: 49px;padding-top: 5px;margin-left: 15px;">
-        <view style="color: #333333;font-weight: bold;font-size: 14px;"> 间接推广用户注册会员可获得15%佣金
+
+    <view style="background: #fff ;padding: 20rpx 0;">
+      <image style="width: 80rpx;height: 80rpx;border-radius: 49px;" src="../images/icon_card1.png"></image>
+      <div style="position: absolute; width: 80%;height: 49rpx;padding-top: 5rpx;margin-left: 15rpx;">
+        <view style="color: #333333;font-weight: bold;font-size: 12px;"> {{currData.title5}}
         </view>
-        <view style="color: #999999;font-size: 12px;margin-top: 5px;">通过推广二维码注册会员可获得</view>
+        <view style="color: #999999;font-size: 12px;margin-top: 5rpx;">{{currData.title6}}</view>
       </div>
     </view>
   </view>
-
-  <view style="background: #fff;padding-bottom: 20px;  " hidden="{{!card1}}">
-
-    <view style="color: #333333;font-weight: bold;padding: 10px 20px;">VIP特权</view>
-    <view style="background: #fff ;padding: 10px 20px;">
-      <image style="width: 49px;height: 49px;border-radius: 49px;" src="../images/icon_card1.png"></image>
-      <div style="position: absolute; width: 50%;height: 49px;padding-top: 5px;margin-left: 15px;">
-        <view style="color: #333333;font-weight: bold;font-size: 14px;"> 专属VIP标识
-        </view>
-        <view style="color: #999999;font-size: 12px;margin-top: 5px;">专属VIP尊贵身份标识</view>
-      </div>
-    </view>
-    <view style="background: #fff ;padding: 10px 20px;">
-      <image style="width: 49px;height: 49px;border-radius: 49px;" src="../images/icon_card2.png"></image>
-      <div style="position: absolute; width: 50%;height: 49px;padding-top: 5px;margin-left: 15px;">
-        <view style="color: #333333;font-weight: bold;font-size: 14px;"> 50条广告
-        </view>
-        <view style="color: #999999;font-size: 12px;margin-top: 5px;">每月可发布50条广告信息</view>
-      </div>
-    </view>
-    <view style="background: #fff ;padding: 10px 20px;">
-      <image style="width: 49px;height: 49px;border-radius: 49px;" src="../images/icon_card3.png"></image>
-      <div style="position: absolute; width: 50%;height: 49px;padding-top: 5px;margin-left: 15px;">
-        <view style="color: #333333;font-weight: bold;font-size: 14px;"> 380个客户电话
-        </view>
-        <view style="color: #999999;font-size: 12px;margin-top: 5px;">每月可查看380条客户联系方式</view>
-      </div>
-    </view>
-  </view>
-
-
-  <view style="background: #fff;padding-bottom: 20px;  " hidden="{{!card2}}">
-
-    <view style="color: #333333;font-weight: bold;padding: 10px 20px;">SVIP特权</view>
-    <view style="background: #fff ;padding: 10px 20px;">
-      <image style="width: 49px;height: 49px;border-radius: 49px;" src="../images/icon_card1.png"></image>
-      <div style="position: absolute; width: 50%;height: 49px;padding-top: 5px;margin-left: 15px;">
-        <view style="color: #333333;font-weight: bold;font-size: 14px;"> 专属VIP标识
-        </view>
-        <view style="color: #999999;font-size: 12px;margin-top: 5px;">专属VIP尊贵身份标识</view>
-      </div>
-    </view>
-    <view style="background: #fff ;padding: 10px 20px;">
-      <image style="width: 49px;height: 49px;border-radius: 49px;" src="../images/icon_card2.png"></image>
-      <div style="position: absolute; width: 50%;height: 49px;padding-top: 5px;margin-left: 15px;">
-        <view style="color: #333333;font-weight: bold;font-size: 14px;"> 200条广告
-        </view>
-        <view style="color: #999999;font-size: 12px;margin-top: 5px;">每月可发布200条广告信息</view>
-      </div>
-    </view>
-    <view style="background: #fff ;padding: 10px 20px;">
-      <image style="width: 49px;height: 49px;border-radius: 49px;" src="../images/icon_card3.png"></image>
-      <div style="position: absolute; width: 50%;height: 49px;padding-top: 5px;margin-left: 15px;">
-        <view style="color: #333333;font-weight: bold;font-size: 14px;"> 1000个客户电话
-        </view>
-        <view style="color: #999999;font-size: 12px;margin-top: 5px;">每月可查看1000条客户联系方式</view>
-      </div>
-    </view>
-  </view>
-
-
-  <view style="background: #fff;padding-bottom: 20px;  " hidden="{{!card3}}">
-
-    <view style="color: #333333;font-weight: bold;padding: 10px 20px;">SSVIP特权</view>
-    <view style="background: #fff ;padding: 10px 20px;">
-      <image style="width: 49px;height: 49px;border-radius: 49px;" src="../images/icon_card1.png"></image>
-      <div style="position: absolute; width: 50%;height: 49px;padding-top: 5px;margin-left: 15px;">
-        <view style="color: #333333;font-weight: bold;font-size: 14px;"> 专属VIP标识
-        </view>
-        <view style="color: #999999;font-size: 12px;margin-top: 5px;">专属VIP尊贵身份标识</view>
-      </div>
-    </view>
-    <view style="background: #fff ;padding: 10px 20px;">
-      <image style="width: 49px;height: 49px;border-radius: 49px;" src="../images/icon_card2.png"></image>
-      <div style="position: absolute; width: 50%;height: 49px;padding-top: 5px;margin-left: 15px;">
-        <view style="color: #333333;font-weight: bold;font-size: 14px;"> 无限发布广告
-        </view>
-        <view style="color: #999999;font-size: 12px;margin-top: 5px;">每月无限制条数发布条广告信息</view>
-      </div>
-    </view>
-    <view style="background: #fff ;padding: 10px 20px;">
-      <image style="width: 49px;height: 49px;border-radius: 49px;" src="../images/icon_card3.png"></image>
-      <div style="position: absolute; width: 50%;height: 49px;padding-top: 5px;margin-left: 15px;">
-        <view style="color: #333333;font-weight: bold;font-size: 14px;"> 无限查看客户电话
-        </view>
-        <view style="color: #999999;font-size: 12px;margin-top: 5px;">每月不限制查看客户联系方式数量</view>
-      </div>
-    </view>
-  </view>
-  <view style="background: #fff;width: 100%;height: 65px;">
-    <button @tap="payment" style="text-align: center;width: 90%;height: 45px;background: #5EC6C6;line-height: 45px;font-size: 15px;color: #FFF;position: absolute;bottom: 10px;border-radius: 10px;margin-left: 20px;">
-      开通会员
-    </button>
-  </view>
+  <button @tap="payment"
+          style="text-align: center;width: 90%;height: 45px;background: #5EC6C6;line-height: 45px;font-size: 15px;color: #FFF;position: absolute;bottom: 10px;border-radius: 10px;left: 5%;">
+    开通会员
+  </button>
 
 </template>
 
@@ -173,53 +86,97 @@
       card1: false,
       card2: false,
       card3: false,
-      current:0
+      current: 0,
+      currData: {
+        title0: "推广经理特权",
+        title1: "专属VIP标识",
+        title2: "专属VIP尊贵身份标识",
+        title3: "直接推广用户注册会员可获得35%佣金",
+        title4: "通过推广二维码注册会员可获得",
+        title5: "间接推广用户注册会员可获得15%佣金",
+        title6: "通过推广二维码注册会员可获得"
+      },
+      typeData: [{
+        title0: "推广经理特权",
+        title1: "专属VIP标识",
+        title2: "专属VIP尊贵身份标识",
+        title3: "直接推广用户注册会员可获得35%佣金",
+        title4: "通过推广二维码注册会员可获得",
+        title5: "间接推广用户注册会员可获得15%佣金",
+        title6: "通过推广二维码注册会员可获得"
+      },
+        {
+          title0: "VIP特权",
+          title1: "专属VIP标识",
+          title2: "专属VIP尊贵身份标识",
+          title3: "50条广告",
+          title4: "每月可发布50条广告信息",
+          title5: "380个客户电话",
+          title6: "每月可查看380条客户联系方式"
+        },
+        {
+          title0: "SVIP特权",
+          title1: "专属VIP标识",
+          title2: "专属VIP尊贵身份标识",
+          title3: "200条广告",
+          title4: "每月可发布200条广告信息",
+          title5: "1000个客户电话",
+          title6: "每月可查看1000条客户联系方式"
+        },
+        {
+          title0: "SSVIP特权",
+          title1: "专属VIP标识",
+          title2: "专属VIP尊贵身份标识",
+          title3: "无限发布广告",
+          title4: "每月无限制条数发布条广告信息",
+          title5: "无限查看客户电话",
+          title6: "每月不限制查看客户联系方式数量"
+        }]
     }
-
 
     async payPre() {
       let that = this;
 
-      var total_fee=99;
+      var total_fee = 99;
 
-      if(that.current==0){
-         // total_fee=99;
-        total_fee=1;
-      }else if(that.current==1){
-       // total_fee=500;
-        total_fee=2;
-      }else if(that.current==2){
+      if (that.current == 0) {
+        // total_fee=99;
+        total_fee = 1;
+      } else if (that.current == 1) {
+        // total_fee=500;
+        total_fee = 2;
+      } else if (that.current == 2) {
         //total_fee=1000;
-        total_fee=3;
-      }else if(that.current==3){
-       // total_fee=1800;
-        total_fee=4;
+        total_fee = 3;
+      } else if (that.current == 3) {
+        // total_fee=1800;
+        total_fee = 4;
       }
 
-      const json = await  api.prepay({
+      const json = await api.prepay({
         query: {
           openid: that.specialInfo.openid,
-          total_fee: total_fee+""
+          total_fee: total_fee + ""
         }
       });
-      let preInfo=json.data.data;
+      let preInfo = json.data.data;
       console.log(preInfo);
 
       wepy.requestPayment(
         {
-          'appId':preInfo.appId,
+          'appId': preInfo.appId,
           'timeStamp': preInfo.timeStamp,
           'nonceStr': preInfo.nonceStr,
           'package': preInfo.package,
           'signType': preInfo.signType,
           'paySign': preInfo.paySign,
-          'success':function(res){
+          'success': function (res) {
             console.log("success")
           },
-          'fail':function(res){
+          'fail': function (res) {
             console.log("fail")
           },
-          'complete':function(res){
+          'complete': function (res) {
             console.log("complete")
           }
         })
@@ -231,28 +188,7 @@
         let that = this;
         let current = e.detail.current;
         that.current = current;
-        if (current == 1) {
-          that.card0 = false;
-          that.card1 = true;
-          that.card2 = false;
-          that.card3 = false;
-
-        } else if (current == 2) {
-          that.card0 = false;
-          that.card1 = false;
-          that.card2 = true;
-          that.card3 = false;
-        } else if (current == 3) {
-          that.card0 = false;
-          that.card1 = false;
-          that.card2 = false;
-          that.card3 = true;
-        } else {
-          that.card0 = true;
-          that.card1 = false;
-          that.card2 = false;
-          that.card3 = false;
-        }
+        that.currData = that.typeData[current];
         that.$apply();
       },
       payment() {

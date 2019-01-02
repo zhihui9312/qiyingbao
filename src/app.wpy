@@ -18,11 +18,11 @@ export default class extends wepy.app {
       'pages/info_user',
       'pages/cooperation_detail',
       'pages/company_detail',
-      'pages/copperation_add',
       'pages/info_company',
-      'pages/member_center',
       'pages/info_he',
       'pages/info',
+      'pages/copperation_add',
+      'pages/member_center',
     ],
     window: {
       backgroundTextStyle: 'dark',

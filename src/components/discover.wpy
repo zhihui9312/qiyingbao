@@ -1,34 +1,27 @@
 <template>
   <view class="bc">
-    <!--<view class="discover">
-        <view class="discover_title_doc">发现好商品</view>
-    </view>-->
     <view class="discover_list">
-      <navigator class="item" open-type="navigate" style="margin-bottom: 10px;" wx:for="{{list}}" wx:key="item" url="/pages/cooperation_detail?copId={{item.id}}">
+      <navigator class="item" open-type="navigate" style="margin-bottom: 10px;" wx:for="{{list}}" wx:key="item"
+                 url="/pages/cooperation_detail?copId={{item.id}}">
+        <view style="padding: 30rpx 30rpx  20rpx;">
+          <image style="height: 30px; width: 30px; border-radius: 50%;" class="discover_img"
+                 src="{{item.user.avatar}}"></image>
 
-        <view style="width: 100%;position: relative; margin: 10px 5px 10px 15px; padding: 10px 0px 10px 10px;">
-          <view>
-
-            <image style="height: 30px; width: 30px; border-radius: 50%;" class="discover_img" src="{{item.user.avatar}}"></image>
-
-            <div style=" position: absolute; padding-left: 10px; color: #999999;font-size: 12px;">
-              <span style="display: inline-block;height: 35px;line-height: 35px;margin-right: 3px;">{{item.user.name}}</span>·<span style="display: inline-block;height: 30px;line-height: 30px; margin-left: 3px;">{{item.user.position}}</span>
-            </div>
-          </view>
-
-          <view style="font-size: 14px; width: 90%;font-weight: bold;">{{item.title}}</view>
-          <view style="font-size: 14px;margin-top: 8px;">
-            <span>场地置换</span>
-            <span style="margin-left: 120px; float: right; margin-right: 50px;color: #999999">{{item.views}}人看过</span>
-<!--
-            <span style="margin-left: 20px;">73人联系过</span>
--->
-          </view>
+          <div style=" padding-left: 15px; color: #999999;font-size: 12px;vertical-align: 10px;">
+            <span
+              style="display: inline-block;height: 35px;line-height: 35px;margin-right: 3px;">{{item.user.name}}</span>·<span
+            style="display: inline-block;height: 30px;line-height: 30px; margin-left: 3px;">{{item.user.position}}</span>
+          </div>
         </view>
-
+        <view style="font-size: 13px; width: 90%;font-weight: bold;padding: 10rpx 30rpx;">{{item.title}}</view>
+        <view style="font-size: 30rpx;padding: 20rpx  30rpx 20rpx ;">
+          <span style="border: 1rpx solid #999999; border-radius: 10rpx;padding: 5rpx 10rpx;">场地置换</span>
+          <span style="margin-left: 120px; float: right; color: #999999">
+            <image style="width: 35rpx; height:25rpx;" src="../images/icon-views.png"></image>
+            {{item.views}}</span>
+        </view>
       </navigator>
     </view>
-
   </view>
 </template>
 <script>
@@ -90,6 +83,7 @@
       width: 45 rpx;
       height: 45 rpx;
     }
+
     .info {
       padding: 5 rpx;
       color: #000000;
@@ -98,9 +92,10 @@
       display: flex;
       align-items: center;
     }
+
     .item {
       background: #fff;
-      padding: 25 px;
+      padding: 30 rpx;
       margin-bottom: 15 rpx;
     }
   }

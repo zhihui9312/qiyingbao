@@ -41,16 +41,14 @@
           </div>
         </view>
 
-        <view style="font-size: 14px; width: 90%;font-weight: bold;">{{item.title}}</view>
-        <view style="font-size: 14px;margin-top: 8px;">
-          <span>场地置换</span>
-          <span style="margin-left: 120px; float: right; margin-right: 50px;color: #999999">{{item.views}}人看过</span>
-          <!--
-                      <span style="margin-left: 20px;">73人联系过</span>
-          -->
+        <view style="font-size: 13px; width: 90%;font-weight: bold;padding: 10rpx 30rpx;">{{item.title}}</view>
+        <view style="font-size: 30rpx;padding: 20rpx  30rpx 20rpx ;">
+          <span style="border: 1rpx solid #999999; border-radius: 10rpx;padding: 5rpx 10rpx;">{{item.way}}</span>
+          <span style="margin-left: 120px; float: right; color: #999999">
+            <image style="width: 35rpx; height:25rpx;" src="../images/icon-views.png"></image>
+            {{item.views}}</span>
         </view>
       </view>
-
     </navigator>
   </view>
 

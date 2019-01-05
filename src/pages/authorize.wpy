@@ -144,7 +144,7 @@
                 console.log(data);
 
                 let res = wx.request({
-                  url: 'http://localhost:8181/qyb/f/qyb/register',
+                  url: 'https://www.st-serve.cn/qyb/f/qyb/register',
                   method: 'GET',
                   data: {
                     openid: openid,

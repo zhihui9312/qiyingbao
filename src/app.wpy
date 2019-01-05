@@ -21,8 +21,10 @@ export default class extends wepy.app {
       'pages/info_company',
       'pages/info_he',
       'pages/info',
-      'pages/copperation_add',
       'pages/member_center',
+      'pages/promotion',
+      'pages/copperation_add',
+      'pages/coop_list'
     ],
     window: {
       backgroundTextStyle: 'dark',

@@ -1,7 +1,7 @@
 <template>
   <view style="background: #F2F2F2">
     <view class="header">
-      <navigator class="header_content" style="margin-left: 20px;" url="/pages/info_user">
+      <navigator class="header_content" style="padding-left: 20px;" url="/pages/info_user">
         <image style="width: 57px;height: 57px;border-radius: 57px;" src="{{userInfo.avatar}}"></image>
         <div style="position: absolute; width: 50%;height: 57px;padding-top: 10px;margin-left: 15px;">
           <view style="color: #333333;font-weight: bold;font-size: 14px;">
@@ -9,10 +9,10 @@
 <!--
             <div wx:if='{{userInfo.vipLevel==1}}' style="width: 60px;height: 18px;font-size: 10px; font-weight: normal; vertical-align: 1px;margin-left: 10px;color: #4bb3f5;border: 2px solid #4bb3f5;padding: 2px 7px; border-radius: 5px;" ></div>
 -->
-            <div wx:if='{{userInfo.vipLevel==2}}' style="width: 60px;height: 18px;font-size: 10px; font-weight: normal; vertical-align: 1px;margin-left: 10px;color: #4bb3f5;border: 2px solid #4bb3f5;padding: 2px 7px; border-radius: 5px;" >推广经理</div>
-            <div wx:if='{{userInfo.vipLevel==3}}'  style="width: 60px;height: 18px;font-size: 10px; font-weight: normal; vertical-align: 1px;margin-left: 10px;color: #FFAA62;border: 2px solid #FFAA62;padding: 2px 7px; border-radius: 5px;" >VIP</div>
-            <div wx:if='{{userInfo.vipLevel==4}}' style="width: 60px;height: 18px;font-size: 10px; font-weight: normal; vertical-align: 1px;margin-left: 10px;color: #E4686B;border: 2px solid #E4686B;padding: 2px 7px; border-radius: 5px;" >SVIP</div>
-            <div wx:if='{{userInfo.vipLevel==5}}' style="width: 60px;height: 18px;font-size: 10px; font-weight: normal; vertical-align: 1px;margin-left: 10px;color: #000;border: 2px solid #F7853F;padding: 2px 7px; border-radius: 5px;" >SSVIP</div>
+            <div wx:if='{{userInfo.vipLevel==2}}' style="width: 20%;height: 18px;font-size: 10px; font-weight: normal; vertical-align: 1px;margin-left: 10px;color: #4bb3f5;border: 2px solid #4bb3f5;padding: 2px 7px; border-radius: 5px;" >推广经理</div>
+            <div wx:if='{{userInfo.vipLevel==3}}'  style="width: 20%;height: 18px;font-size: 10px; font-weight: normal; vertical-align: 1px;margin-left: 10px;color: #FFAA62;border: 2px solid #FFAA62;padding: 2px 7px; border-radius: 5px;" >VIP</div>
+            <div wx:if='{{userInfo.vipLevel==4}}' style="width: 20%;height: 18px;font-size: 10px; font-weight: normal; vertical-align: 1px;margin-left: 10px;color: #E4686B;border: 2px solid #E4686B;padding: 2px 7px; border-radius: 5px;" >SVIP</div>
+            <div wx:if='{{userInfo.vipLevel==5}}' style="width: 20%;height: 18px;font-size: 10px; font-weight: normal; vertical-align: 1px;margin-left: 10px;color: #000;border: 2px solid #F7853F;padding: 2px 7px; border-radius: 5px;" >SSVIP</div>
           </view>
           <view style="color: #333333;font-size: 12px;margin-top: 5px;">{{userInfo.position}}</view>
         </div>
@@ -108,7 +108,7 @@
     </view>
 
     <view class="info_block">
-      <navigator class="item" url="/pages/">
+      <navigator class="item" url="/pages/promotion?id={{userInfo.id}}">
         <view class="item_content">
           <!--
                     <image class="item_img" src="../images/icon_my_06.png"></image>
@@ -231,7 +231,6 @@
   }
 
   .header_content {
-    width: 100%;
     margin: 0 auto;
     padding-top: 30px;
   }

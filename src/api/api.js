@@ -1,11 +1,10 @@
 import {
   wxRequest
 } from '@/utils/wxRequest';
-
 let env = "-test" //-dev 或者 -test
 //const apiMall = 'https://sujiefs.com/'
-const apiMall = 'http://localhost:8181/qyb/f'
-// const apiMall = 'https://www.st-serve.cn/qyb/f'
+//const apiMall = 'http://localhost:8181/qyb/f'
+const apiMall = 'https://www.st-serve.cn/qyb/f'
 const host='https://www.st-serve.cn';
 
 /**

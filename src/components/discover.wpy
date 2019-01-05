@@ -6,7 +6,6 @@
         <view style="padding: 30rpx 30rpx  20rpx;">
           <image style="height: 30px; width: 30px; border-radius: 50%;" class="discover_img"
                  src="{{item.user.avatar}}"></image>
-
           <div style=" padding-left: 15px; color: #999999;font-size: 12px;vertical-align: 10px;">
             <span
               style="display: inline-block;height: 35px;line-height: 35px;margin-right: 3px;">{{item.user.name}}</span>·<span
@@ -15,7 +14,7 @@
         </view>
         <view style="font-size: 13px; width: 90%;font-weight: bold;padding: 10rpx 30rpx;">{{item.title}}</view>
         <view style="font-size: 30rpx;padding: 20rpx  30rpx 20rpx ;">
-          <span style="border: 1rpx solid #999999; border-radius: 10rpx;padding: 5rpx 10rpx;">场地置换</span>
+          <span style="border: 1rpx solid #999999; border-radius: 10rpx;padding: 5rpx 10rpx;">{{item.way}}</span>
           <span style="margin-left: 120px; float: right; color: #999999">
             <image style="width: 35rpx; height:25rpx;" src="../images/icon-views.png"></image>
             {{item.views}}</span>

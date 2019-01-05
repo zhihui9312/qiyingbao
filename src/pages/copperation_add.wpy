@@ -1,27 +1,27 @@
 <template>
   <form bindsubmit="formSubmit">
     <view style="background: #fff">
-      <view
-        style="background-color: #EEEEEE;color: #999999;font-size: 12px;height: auto;padding: 15rpx 15rpx 15rpx 25rpx">
-        所有合作信息均由专人审核，禁止发布广告及业务宣传信息
+      <view style="background-color: #EEEEEE;color: #999999;font-size: 12px;height: auto;padding: 15rpx 15rpx 15rpx 25rpx">
+        所有合作信息均由专人审核，禁止发布色情及其他违法宣传信息。
       </view>
-
       <view style="" class="item">
         <label style="">合作标题</label><input type="text" name="title" style="" placeholder="请输入标题内容(30字以内)"/>
       </view>
 
       <view style="" class="item">
-        <label>合作方式</label><input type="text" name="way" placeholder="请输入合作方式"/>
+        <label>合作方式</label>
+       <picker bindchange="bindPickerChange"  value="{{index}}" range="{{array}}">
+          <view class="picker">{{array[indx]}}</view>
+        </picker>
+         <!--<input type="text" name="way" placeholder="请输入合作方式"/>-->
       </view>
 
       <view style="" class="item">
         <label>合作地区</label><input type="text" name="area" placeholder="请输入合作地区"/>
       </view>
-      <view style="height: 80rpx;border-top: 1rpx solid #F2F2F2;color: #333333;font-size: 13px;padding: 25rpx;"
-            class="">
-        <label style="float: left;">业务介绍</label><textarea name="offerResource"
-                                                        style="width: 70%;padding-left: 40rpx;height: 80px;overflow: hidden;" type="text"
-                                                        placeholder="介绍您的业务描述（如行业、经营业务范 围等，100字以内）"/>
+      <view style="height: 80rpx; border-top: 1rpx solid #F2F2F2;color: #333333;font-size: 13px;padding: 25rpx 25rpx 25rpx 25rpx;" class="">
+        <label style="float: left;">业务介绍</label>
+        <textarea name="offerResource" rows="" cols="" style="width: 65%;padding-left: 40rpx;height: 80rpx;overflow: hidden;float: left;margin-top: -12rpx;" type="text" placeholder="介绍您的业务描述（如行业、经营业务范 围等，100字以内）"/>
       </view>
     </view>
     <button formType="submit"
@@ -46,11 +46,18 @@
       navigationBarTitleText: "发布广告"
     }
     data = {
-      qybInfo: {}
+      qybInfo: {},
+      array: [
+        "业务合作",
+        "渠道招商",
+        "联合活动",
+        "代理加盟"
+      ],
+      indx:0
     }
-
-    async saveCoopeartion(title, way, area, offerResource) {
+    async saveCoopeartion(title, area, offerResource) {
       let qybInfo = this.qybInfo;
+      let that=this;
       const json = await api.saveCooperation({
         query: {
           user: {
@@ -60,7 +67,7 @@
             id: qybInfo.company.id
           },
           title: title,
-          way: way,
+          way: that.array[that.indx],
           area: area,
           offerResource: offerResource,
           status: 1
@@ -73,7 +80,7 @@
       console.log(json);
     }
 
-    async getAdvCount(title, way, area, offerResource) {
+    async getAdvCount(title,  area, offerResource) {
       let that = this;
       const json = await api.getAdvCount({
         query: {
@@ -82,7 +89,7 @@
       });
       var count = json.data.data;
       if (count > 0) {
-        this.saveCoopeartion(title, way, area, offerResource);
+        this.saveCoopeartion(title,  area, offerResource);
       } else {
         tip.alert("广告数量已用完！");
       }
@@ -93,16 +100,11 @@
       formSubmit(e) {
 
         let title = e.detail.value.title;
-        let way = e.detail.value.way;
         let area = e.detail.value.area;
         let offerResource = e.detail.value.offerResource;
 
         if (!title) {
           tip.error("请输入合作标题！");
-          return;
-        }
-        if (!way) {
-          tip.error("请输入合作方式！");
           return;
         }
         if (!area) {
@@ -120,17 +122,24 @@
           return;
         }
 
-       let speInfo = wepy.getStorageSync(QYB_INFO);
-       if( speInfo.vipLevel<3){
-         tip.error("暂无发布权限，请先开通会员服务！");
-       }else{
-         this.getAdvCount(title, way, area, offerResource);
+        let speInfo = wepy.getStorageSync(QYB_INFO);
+        if (speInfo.vipLevel < 3) {
+          tip.error("暂无发布权限，请先开通会员服务！");
+        } else {
+          this.getAdvCount(title,area, offerResource);
 
-       }
+        }
 
-      }
+      },
+
+
     }
-
+    bindPickerChange(e) {
+      console.log(e.detail );
+      let that=this;
+      that.indx=e.detail.value;
+      that.$apply();
+    }
     onLoad() {
       let that = this;
       that.qybInfo = wepy.getStorageSync(QYB_INFO);
@@ -146,6 +155,10 @@
     font-size: 13px;
     margin-bottom: 1rpx;
     border-top: 1rpx solid #F2F2F2;
+    display: block;
+    clear: both;
+    content: '';
+    width: 100%;
   }
 
   .item label {
@@ -155,6 +168,16 @@
     line-height: 50rpx;
   }
 
+
+  .item picker{
+
+    float: left;
+    color: black;
+    margin-left: 40rpx;
+    height: 50rpx;
+    line-height: 50rpx;
+    width: 60%;
+  }
   .item input {
     float: left;
     color: black;

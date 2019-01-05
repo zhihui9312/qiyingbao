@@ -10,20 +10,21 @@
     </div>
   </view>
 
+
   <swiper style="background: #fff;padding: 10rpx 0;" class="swiper" indicator-active-color="{{indicatorActiveColor}}"
           indicator-dots="{{indicatorDots}}"
-          duration="350" previous-margin="15rpx" bindchange="swChage">
+          duration="350" previous-margin="60rpx" bindchange="swChage">
     <swiper-item>
-      <image model="scaleToFill" style=" width: 100%;height: 300rpx;" src="../images/me-jl.png" class="slide-image"/>
+      <image model="aspectFit" style=" width: 640rpx; height: 310rpx" src="https://www.st-serve.cn/qyb/userfiles/72ecf9bc56a045ec84764b847a6e9bb0/images/icon/icon_jl.png" class="slide-image"/>
     </swiper-item>
     <swiper-item>
-      <image model="scaleToFill" style=" width: 100%;height: 300rpx;" src="../images/me-vip.png" class="slide-image"/>
+      <image model="aspectFit" style=" width: 640rpx; height: 310rpx"src="https://www.st-serve.cn/qyb/userfiles/72ecf9bc56a045ec84764b847a6e9bb0/images/icon/icon_vip.png" class="slide-image"/>
     </swiper-item>
     <swiper-item>
-      <image model="scaleToFill" style=" width: 100%;height: 300rpx;" src="../images/me-svip.png" class="slide-image"/>
+      <image model="aspectFit" style=" width: 640rpx; height: 310rpx" src="https://www.st-serve.cn/qyb/userfiles/72ecf9bc56a045ec84764b847a6e9bb0/images/icon/icon_svip.png" class="slide-image"/>
     </swiper-item>
     <swiper-item>
-      <image model="scaleToFill" style=" width: 100%;height: 300rpx;" src="../images/me-ssvip.png" class="slide-image"/>
+      <image model="aspectFit" style=" width: 640rpx; height: 310rpx" src="https://www.st-serve.cn/qyb/userfiles/72ecf9bc56a045ec84764b847a6e9bb0/images/icon/icon_ssvip.png" class="slide-image"/>
     </swiper-item>
   </swiper>
 
@@ -109,8 +110,8 @@
           title0: "VIP特权",
           title1: "专属VIP标识",
           title2: "专属VIP尊贵身份标识",
-          title3: "50条广告",
-          title4: "每月可发布50条广告信息",
+          title3: "30条广告",
+          title4: "每月可发布30条广告信息",
           title5: "380个客户电话",
           title6: "每月可查看380条客户联系方式"
         },
@@ -118,8 +119,8 @@
           title0: "SVIP特权",
           title1: "专属VIP标识",
           title2: "专属VIP尊贵身份标识",
-          title3: "200条广告",
-          title4: "每月可发布200条广告信息",
+          title3: "50条广告",
+          title4: "每月可发布50条广告信息",
           title5: "1000个客户电话",
           title6: "每月可查看1000条客户联系方式"
         },
@@ -138,21 +139,20 @@
       let that = this;
 
       var total_fee = 99;
-
       if (that.current == 0) {
-        // total_fee=99;
-        total_fee = 1;
+         total_fee=99;
+        //total_fee = 1;
       } else if (that.current == 1) {
-        // total_fee=500;
-        total_fee = 2;
+        total_fee=500;
+        //total_fee = 2;
       } else if (that.current == 2) {
-        //total_fee=1000;
-        total_fee = 3;
+        total_fee=1000;
+        //total_fee = 3;
       } else if (that.current == 3) {
-        // total_fee=1800;
-        total_fee = 4;
+         total_fee=1800;
+        //total_fee = 4;
       }
-
+      total_fee=total_fee*100;
       const json = await api.prepay({
         query: {
           openid: that.specialInfo.openid,

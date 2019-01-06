@@ -4,9 +4,9 @@
       <view style="" class="item">
         <span style="">公司名称</span><input type="text" name="name" value="{{comInfo.name}}" placeholder="请输入公司名称"/>
       </view>
-      <view style="border-top: 10px solid #f2f2f2;position: relative" class="item">
+      <view style="border-top: 10px solid #f2f2f2;position: relative" class="item" bindtap="chooseImage" >
         <span style="">公司LOGO</span>
-        <image bindtap="chooseImage" name="title" style="width: 60rpx;height: 60rpx;border-radius: 60rpx;position: absolute;left: 200rpx;margin-top: 0" src="{{comInfo.logo}}"/>
+        <image name="title" style="width: 60rpx;height: 60rpx;border-radius: 60rpx;position: absolute;left: 200rpx;margin-top: 0" src="{{comInfo.logo}}"/>
       </view>
       <view style="border-top: 10px solid #f2f2f2" class="item">
         <span>所在城市</span><input type="text" value="{{comInfo.city}}" name="city" placeholder="请输入所在城市"/>
@@ -20,9 +20,8 @@
       <view style="" class="item">
         <span>公司官网</span><input type="text" value="{{comInfo.site}}" name="site" placeholder="请输入公司网址"/>
       </view>
-      <view style="height: 80px;" class="item">
-        <span style="float: left;">公司介绍</span><textarea name="introdction"
-                                                        style="float: left;width: 70%;padding-top: 0rpx;  color: black;margin-left: 20px;height: 80px;overflow: hidden;" type="text"
+      <view style="height: 340rpx; "class="item">
+        <span style="float: left;">公司介绍</span><textarea name="introdction" maxlength="100" class="mytext"
                                                         placeholder="介绍您的公司（如行业、经营业务范围等，100字以内）" value="{{comInfo.introdction}}"/>
       </view>
     </view>
@@ -159,16 +158,21 @@
     float: left;
     color: #333333;
   }
-
-  .item input {
-    height: 60rpx;
-    line-height: 60rpx;
+  .mytext{
     float: left;
     color: black;
-    display: inline-block;
-    margin-left: 20px;
-    width: 75%;
+    margin-left: 40rpx;
+    height: 300rpx;
+    line-height: 60rpx;
+    width: 70%;
   }
-
+  .item input {
+    float: left;
+    color: black;
+    margin-left: 40rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    width: 70%;
+  }
 </style>
 

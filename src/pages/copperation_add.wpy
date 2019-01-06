@@ -2,26 +2,28 @@
   <form bindsubmit="formSubmit">
     <view style="background: #fff">
       <view style="background-color: #EEEEEE;color: #999999;font-size: 12px;height: auto;padding: 15rpx 15rpx 15rpx 25rpx">
-        所有合作信息均由专人审核，禁止发布色情及其他违法宣传信息。
+        所有信息均由专人审核，禁止发布色情及其他违法宣传信息。
       </view>
       <view style="" class="item">
         <label style="">合作标题</label><input type="text" name="title" style="" placeholder="请输入标题内容(30字以内)"/>
       </view>
 
-      <view style="" class="item">
+      <view style="position: relative;" class="item">
         <label>合作方式</label>
-       <picker bindchange="bindPickerChange"  value="{{index}}" range="{{array}}">
+       <picker style="font-size: 13px" bindchange="bindPickerChange"  value="{{index}}" range="{{array}}">
           <view class="picker">{{array[indx]}}</view>
         </picker>
+        <view style="height: 50rpx;line-height: 50rpx;position: absolute;right: 100rpx;"><image style="width: 35rpx;height: 20rpx;" src="../images/row.png"></image></view>
          <!--<input type="text" name="way" placeholder="请输入合作方式"/>-->
       </view>
 
       <view style="" class="item">
         <label>合作地区</label><input type="text" name="area" placeholder="请输入合作地区"/>
       </view>
-      <view style="height: 80rpx; border-top: 1rpx solid #F2F2F2;color: #333333;font-size: 13px;padding: 25rpx 25rpx 25rpx 25rpx;" class="">
-        <label style="float: left;">业务介绍</label>
-        <textarea name="offerResource" rows="" cols="" style="width: 65%;padding-left: 40rpx;height: 80rpx;overflow: hidden;float: left;margin-top: -12rpx;" type="text" placeholder="介绍您的业务描述（如行业、经营业务范 围等，100字以内）"/>
+      <view style="height: 340rpx; border-top: 1rpx solid #F2F2F2; "class="item">
+        <label >业务介绍</label>
+        <textarea class="mytext" maxlength="100" name="offerResource"
+                  type="text" placeholder="介绍您的业务描述（如行业、经营业务范 围等，100字以内）"/>
       </view>
     </view>
     <button formType="submit"
@@ -80,7 +82,7 @@
       console.log(json);
     }
 
-    async getAdvCount(title,  area, offerResource) {
+    async getAdvCount(title,  area, offerResource,vipLevel) {
       let that = this;
       const json = await api.getAdvCount({
         query: {
@@ -88,7 +90,7 @@
         }
       });
       var count = json.data.data;
-      if (count > 0) {
+      if (count > 0||vipLevel>=5) {
         this.saveCoopeartion(title,  area, offerResource);
       } else {
         tip.alert("广告数量已用完！");
@@ -126,7 +128,7 @@
         if (speInfo.vipLevel < 3) {
           tip.error("暂无发布权限，请先开通会员服务！");
         } else {
-          this.getAdvCount(title,area, offerResource);
+          this.getAdvCount(title,area, offerResource,speInfo.vipLevel);
 
         }
 
@@ -183,6 +185,14 @@
     color: black;
     margin-left: 40rpx;
     height: 50rpx;
+    line-height: 50rpx;
+    width: 60%;
+  }
+  .mytext{
+    float: left;
+    color: black;
+    margin-left: 40rpx;
+    height: 300rpx;
     line-height: 50rpx;
     width: 60%;
   }

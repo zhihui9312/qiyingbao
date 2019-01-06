@@ -52,7 +52,7 @@
               </view>
               <view class="arrow">&gt;</view>
             </navigator>-->
-      <navigator class="item" url="/pages/order">
+      <navigator class="item" url="/pages/info_msg">
         <view class="item_content">
           <!-- <image class="item_img" src="../images/icon_my_02.png"></image>-->
           <view class="text">我的消息</view>
@@ -74,7 +74,7 @@
         </view>
         <view class="arrow">&gt;</view>
       </navigator>
-      <navigator class="item" url="/pages/">
+      <navigator class="item" url="/pages/info_team">
         <view class="item_content">
           <!--
                     <image class="item_img" src="../images/icon_my_03.png"></image>
@@ -87,7 +87,7 @@
 
     <view class="info_block">
 
-      <navigator class="item" url="/pages/?type=0">
+      <navigator class="item" url="/pages/info_list">
         <view class="item_content">
           <!--
                     <image class="item_img" src="../images/icon_my_04.png"></image>
@@ -96,6 +96,7 @@
         </view>
         <view class="arrow">&gt;</view>
       </navigator>
+
       <navigator class="item" url="/pages/info_company">
         <view class="item_content">
           <!--

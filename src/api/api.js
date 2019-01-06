@@ -59,9 +59,13 @@ const saveUserInfo=(params)=>wxRequest(params,apiMall+"/qyb/user/save");
 
 const saveRecommend=(params)=>wxRequest(params,apiMall+"/qyb/saveRecommend");
 
+const getMsgList=(params)=>wxRequest(params,apiMall+"/qyb/getMsgList");
+
+const getTeam=(params)=>wxRequest(params,apiMall+"/qyb/getTeam");
 
 
 const getDiscoverList = (params) => wxRequest(params, apiMall + '/goods/list?cateidOne=1&cateidTwo=0&price=0&sales=2');
+
 
 
 
@@ -212,7 +216,8 @@ export default {
   saveUserInfo,
   updateViews,
   saveRecommend,
-
+  getMsgList,
+  getTeam,
 
 
 

@@ -7,6 +7,7 @@
         </swiper-item>
       </block>
     </swiper>
+
     <view style="height: 150rpx;width: 100%;position: relative;background: #fff;padding: 20rpx 0rpx 20rpx 0rpx;">
       <navigator class="md-nv" style="height: 120rpx" url="/pages/coop_list?type=1">
         <image class="home-icon" src="https://www.st-serve.cn/qyb/userfiles/72ecf9bc56a045ec84764b847a6e9bb0/images/icon/icon_home1.png"></image>
@@ -202,7 +203,7 @@
         }
         that.preventRepeatReuqest = true;
         ++that.currentPage;
-        that.getDiscoverList(that.currentPage - 1);
+        that.getDiscoverList(that.currentPage);
         that.preventRepeatReuqest = false;
       } else {
         that.showLoading = false;

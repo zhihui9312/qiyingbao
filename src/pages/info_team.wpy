@@ -1,14 +1,10 @@
 <template>
-
   <view>
-
-    <view class="msg-cell" wx:for="{{msgList}}" wx:key="item">
-
-      <image src="../images/icon_msg.png"></image>
-
+    <view class="msg-cell" wx:for="{{userList}}" wx:key="item">
+      <image src="{{item.avatar}}"></image>
       <view class="msg-content">
-        <view class="title">系统消息</view>
-        <view>{{item.content}}</view>
+        <view class="title">{{item.name}}</view>
+        <view>{{item.position}}</view>
       </view>
 
     </view>
@@ -17,34 +13,35 @@
 </template>
 
 <script>
-  import wepy from 'wepy';
-  import api from '@/api/api';
-  import tip from '@/utils/tip';
+  import wepy from 'wepy'
+  import api from '@/api/api'
+  import tip from '@/utils/tip'
   import Placeholder from "../components/common/placeholder";
-  import {QYB_INFO} from '@/utils/constant';
+  import {QYB_INFO} from '@/utils/constant'
 
-  export default class InfoMsg extends wepy.page {
+  export default class InfoTeam extends wepy.page {
     config = {
-      navigationBarTitleText: "我的消息"
+      navigationBarTitleText: '我的团队',
     }
     components = {
       placeholder: Placeholder
     }
     data = {
-      msgList: {},
+      userList: [],
       is_empty: false
     }
 
-    async getMsgList(userId) {
+    async getTeam(userId) {
       let that = this;
-      const res = await api.getMsgList({
+      const json = await api.getTeam({
         query: {
           userId: userId
         }
       });
-      if(res.data.length>0){
-        that.msgList = res.data;
-      }else{
+
+      if (json.data.length > 0) {
+        that.userList = json.data;
+      } else {
         that.is_empty=true;
       }
       that.$apply();
@@ -52,34 +49,39 @@
 
     onLoad() {
       let userInfo = wepy.getStorageSync(QYB_INFO);
-      this.getMsgList(userInfo.id)
+      this.getTeam(1, userInfo.id);
     }
+
   }
+
 </script>
+
 <style lang="css">
   .msg-cell {
-    padding: 30rpx;
-    height: 140rpx;
+    padding: 30 rpx;
+    height: 140 rpx;
     width: 100%;
     background: #fff;
     box-sizing: border-box;
+    border-top: 1px #f2f2f2 solid;
   }
 
   .msg-cell image {
-    width: 80rpx;
-    height: 80rpx;
+    width: 80 rpx;
+    height: 80 rpx;
     float: left;
+    border-radius: 80 rpx;
   }
 
   .msg-content {
-    height: 80rpx;
+    height: 80 rpx;
     float: left;
-    padding-left: 20rpx;
+    padding-left: 20 rpx;
   }
 
   .msg-content view {
-    height: 40rpx;
-    line-height: 40rpx;
+    height: 40 rpx;
+    line-height: 40 rpx;
   }
 
   .msg-content {
@@ -89,6 +91,5 @@
   .msg-content .title {
     color: #333333;
   }
-
 
 </style>

@@ -92,18 +92,18 @@
         title0: "推广经理特权",
         title1: "专属VIP标识",
         title2: "专属VIP尊贵身份标识",
-        title3: "直接推广用户注册会员可获得35%佣金",
+        title3: "分享成功可获得相应佣金",
         title4: "通过推广二维码注册会员可获得",
-        title5: "间接推广用户注册会员可获得15%佣金",
+        title5: "分享成功可获得相应佣金",
         title6: "通过推广二维码注册会员可获得"
       },
       typeData: [{
         title0: "推广经理特权",
         title1: "专属VIP标识",
         title2: "专属VIP尊贵身份标识",
-        title3: "直接推广用户注册会员可获得35%佣金",
+        title3: "分享成功可获得相应佣金",
         title4: "通过推广二维码注册会员可获得",
-        title5: "间接推广用户注册会员可获得15%佣金",
+        title5: "分享成功可获得相应佣金",
         title6: "通过推广二维码注册会员可获得"
       },
         {
@@ -112,8 +112,8 @@
           title2: "专属VIP尊贵身份标识",
           title3: "30条广告",
           title4: "每月可发布30条广告信息",
-          title5: "380个客户电话",
-          title6: "每月可查看380条客户联系方式"
+          title5: "500个客户电话",
+          title6: "每月可查看500条客户联系方式"
         },
         {
           title0: "SVIP特权",
@@ -149,7 +149,7 @@
         total_fee=1000;
         //total_fee = 3;
       } else if (that.current == 3) {
-         total_fee=1800;
+         total_fee=1980;
         //total_fee = 4;
       }
       total_fee=total_fee*100;

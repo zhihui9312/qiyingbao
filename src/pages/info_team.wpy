@@ -49,7 +49,7 @@
 
     onLoad() {
       let userInfo = wepy.getStorageSync(QYB_INFO);
-      this.getTeam(1, userInfo.id);
+      this.getTeam(userInfo.id);
     }
 
   }
@@ -58,8 +58,8 @@
 
 <style lang="css">
   .msg-cell {
-    padding: 30 rpx;
-    height: 140 rpx;
+    padding: 30rpx;
+    height: 140rpx;
     width: 100%;
     background: #fff;
     box-sizing: border-box;
@@ -67,21 +67,21 @@
   }
 
   .msg-cell image {
-    width: 80 rpx;
-    height: 80 rpx;
+    width: 80rpx;
+    height: 80rpx;
     float: left;
-    border-radius: 80 rpx;
+    border-radius: 80rpx;
   }
 
   .msg-content {
-    height: 80 rpx;
+    height: 80rpx;
     float: left;
-    padding-left: 20 rpx;
+    padding-left: 20rpx;
   }
 
   .msg-content view {
-    height: 40 rpx;
-    line-height: 40 rpx;
+    height: 40rpx;
+    line-height: 40rpx;
   }
 
   .msg-content {

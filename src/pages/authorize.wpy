@@ -63,8 +63,8 @@
       let res = await wepy.getSetting();
       if ((res.authSetting)['scope.userInfo']) {
         let userInfo = wepy.getStorageSync(USER_INFO);
-        //if (!userInfo.nickName) {
-        if (true) {
+        if (!userInfo.nickName) {
+        //if (true) {
           let data = await wepy.getUserInfo();
           if (data) {
             wepy.setStorageSync(USER_INFO, data.userInfo);

@@ -72,7 +72,7 @@
       let id = option.id;
       let that = this;
       console.log(id);
-      that.imgUrl = "http://www.st-serve.cn/qyb/f/qyb/wx/getCode?id=" + id;
+      that.imgUrl = "https://www.st-serve.cn/qyb/f/qyb/wx/getCode?id=" + id;
 
       let userInfo = wepy.getStorageSync(QYB_INFO);
       that.userInfo = userInfo;

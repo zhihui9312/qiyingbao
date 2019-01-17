@@ -1,15 +1,15 @@
 <template>
 
-<!--  <navigator class="" style="padding : 20px;background: #fff" url="/pages/info_he?id={{copData.user.id}}">-->
-    <navigator class="" style="padding : 20px;background: #fff" >
+  <!--  <navigator class="" style="padding : 20px;background: #fff" url="/pages/info_he?id={{copData.user.id}}">-->
+  <navigator class="" style="padding : 20px;background: #fff">
     <image style="width: 34px;height: 34px;border-radius: 34px;" src="{{copData.user.avatar}}"></image>
     <div style="position: absolute; width: 50%;height: 34px;padding-top: -2px;margin-left: 15px;">
       <view style="color: #333333;font-weight: bold;font-size: 14px;"> {{copData.user.name}} <!--<image style="width: 40px;height: 18px; vertical-align: -3px;margin-left: 5px;" src="../images/name_vip.png"></image>--></view>
       <view style="color: #333333;font-size: 12px;margin-top: 5px;">{{copData.user.position}}</view>
     </div>
-  <!--  <image class="arrow" src="../images/icon_arrow.png" style="position: absolute;right: 20px; top: 35px;width: 15px;height: 20px;"></image>-->
+    <!--  <image class="arrow" src="../images/icon_arrow.png" style="position: absolute;right: 20px; top: 35px;width: 15px;height: 20px;"></image>-->
   </navigator>
-  <view style="padding: 10px 20px;background: #fff ;border-top: 1px solid #f2f2f2;font-size: 15px;font-weight: bold;height: 70px;position: relative;overflow: hidden;">
+  <view style="padding: 10px 20px;background: #fff ;border-top: 1px solid #f2f2f2;font-size: 15px;font-weight: bold;height: auto;position: relative;overflow: hidden;">
     {{copData.offerResource}}
   </view>
   <view style="font-size: 12px; color: #999999;font-weight: normal;background: #fff;padding: 10px 20px; height: 12px; line-height: 12px;">{{copData.area}}</view>
@@ -22,7 +22,7 @@
       {{copData.views}}人浏览过
     </view>
   </view>
-  <view style="position: relative;width: 100%;height: 70px;padding: 10px 20px;background: #fff;border-top: 10px solid #f2f2f2;box-sizing: content-box">
+  <view style="position: relative;width: 100%;height: 70px;padding: 10px 20px;background: #fff;border-top: 10px solid #f2f2f2;box-sizing: border-box">
     <image style="width: 59px;height: 59px;position: absolute;top: 18%; border-radius: 10px;" src="{{copData.company.logo}}"/>
 
     <view style="height: 24px;margin-left: 70px;position: absolute;top: 33%;">
@@ -39,7 +39,7 @@
     留言 · {{comList.length}}条
   </view>
 
-  <view wx:for="{{comList}}" wx:key="item" @tap="changeCate" data-code="" style="background: #fff;padding: 10px 20px;position: relative;width: 100%;height: 40px;border-top: 1px solid #f2f2f2;">
+  <view wx:for="{{comList}}" wx:key="item" @tap="changeCate" data-code="" style="box-sizing: border-box;background: #fff;padding: 10px 20px;position: relative;width: 100%;height: 40px;border-top: 1px solid #f2f2f2">
     <image style="width: 34px;height: 34px;position: absolute;top: 25%; border-radius: 34px;" src="{{item.user.avatar}}"/>
     <view style="height: 24px;padding-left: 50px;position: absolute;top: 20%;">
       <view style="font-size: 14px;color: #5EC6C6">
@@ -51,15 +51,15 @@
     </view>
   </view>
 
-  <view style="background: #fff;padding: 10px 20px; height: 55px;width: 100%;border-top: 1px solid #f2f2f2;">
-    <div style="color: #5EC6C6;border: 1px solid #5EC6C6;border-radius: 5px; height: 50px;width: 100px;float: left; text-align: center;line-height: 50px;font-size: 15px;box-sizing: border-box;">
-      留言
-    </div>
-    <div style="color: #fff;width: 55%;float: left;text-align: center;line-height: 50px;font-size: 15px;background: #5EC6C6;margin-left: 20px;border-radius: 5px;">
-      查看联系方式
-    </div>
-  </view>
+  <view style="background: #fff;padding: 30rpx 30rpx; height: 150rpx;width: 100%;border-top: 1px solid #f2f2f2;box-sizing: border-box;">
+    <!--    <div style="color: #5EC6C6;border: 1px solid #5EC6C6;border-radius: 5px; height: 50px;width: 100px;float: left; text-align: center;line-height: 50px;font-size: 15px;box-sizing: border-box;">
+          留言
+        </div>-->
+    <view @tap="viewTel" style="color: #fff;width: 100%;float: left;text-align: center;line-height: 100rpx;font-size: 15px;background: #5EC6C6;border-radius: 20rpx; border-box;">
+      {{tel}}
+    </view>
 
+  </view>
 </template>
 
 <script>
@@ -78,13 +78,31 @@
     data = {
       copData: {},
       copId: "",
-      comList: []
+      comList: [],
+      tel: "查看联系方式",
+      qybInfo: {},
+      telView: false
+    }
+
+    methods = {
+
+      viewTel() {
+        let that = this;
+        if (that.copData.user.mobile) {
+
+          that.getPhCount();
+        } else {
+          that.tel = "未填写联系方式";
+        }
+      }
     }
 
     onLoad(option) {
       this.copId = option.copId;
       this.getDetail(this.copId)
       this.updateViews(this.copId)
+      let userInfo = wepy.getStorageSync(QYB_INFO);
+      this.qybInfo = userInfo;
     }
 
     async getDetail(id) {
@@ -103,12 +121,49 @@
       that.copData = json.data.data;
       that.$apply();
     }
-    async updateViews(id){
-      const json=await api.updateViews({
-        query:{
-          id:id
+
+    async updateViews(id) {
+      const json = await api.updateViews({
+        query: {
+          id: id
         }
       });
+    }
+
+    async subPh() {
+      let that = this;
+      const json = await api.subPh({
+        query: {
+          id: that.qybInfo.id
+        }
+      });
+      that.tel = that.copData.user.mobile;
+      that.telView = true;
+      that.$apply();
+    }
+
+    async getPhCount() {
+      let that = this;
+      if (that.telView) {
+        return;
+      }
+      const json = await api.getPhCount({
+        query: {
+          id: that.qybInfo.id
+        }
+      });
+      var count = json.data.data;
+
+
+      if(that.qybInfo.vipLevel==5){
+        that.tel = that.copData.user.mobile;
+        that.telView = true;
+        that.$apply();
+      }else if (count > 0) {
+        that.subPh();
+      } else {
+        tip.alert("查看数量已用完！");
+      }
     }
   }
 

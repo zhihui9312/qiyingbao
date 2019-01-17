@@ -57,13 +57,14 @@
       ],
       indx:0
     }
-    async saveCoopeartion(title, area, offerResource) {
+    async saveCoopeartion(title, area, offerResource,vipLevel) {
       let qybInfo = this.qybInfo;
       let that=this;
       const json = await api.saveCooperation({
         query: {
           user: {
-            id: qybInfo.id
+            id: qybInfo.id,
+            vipLevel:vipLevel
           },
           company: {
             id: qybInfo.company.id
@@ -91,7 +92,7 @@
       });
       var count = json.data.data;
       if (count > 0||vipLevel>=5) {
-        this.saveCoopeartion(title,  area, offerResource);
+        this.saveCoopeartion(title,  area, offerResource,vipLevel);
       } else {
         tip.alert("广告数量已用完！");
       }

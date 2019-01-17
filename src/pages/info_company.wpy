@@ -110,6 +110,13 @@
 
     async saveCpy(name,city,industry,site,introdction){
       let that=this;
+
+
+      if(!that.logo){
+        tip.alert("请上传公司LOGO！");
+        return ;
+      }
+
       const json=await  api.saveCpy({
         query:{
           id:that.comInfo.id,

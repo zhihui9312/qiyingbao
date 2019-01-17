@@ -10,7 +10,6 @@ import 'wepy-async-function'
 export default class extends wepy.app {
   config = {
     pages: [
-
       'pages/authorize',
       'pages/copperation_add',
       'pages/home',
@@ -28,7 +27,6 @@ export default class extends wepy.app {
       'pages/info_list',
       'pages/info_team',
       'pages/coop_list'
-
     ],
     window: {
       backgroundTextStyle: 'dark',

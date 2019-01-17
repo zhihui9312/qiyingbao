@@ -89,22 +89,22 @@
       card3: false,
       current: 0,
       currData: {
-        title0: "推广经理特权",
-        title1: "专属VIP标识",
-        title2: "专属VIP尊贵身份标识",
-        title3: "分享成功可获得相应佣金",
-        title4: "通过推广二维码注册会员可获得",
-        title5: "分享成功可获得相应佣金",
-        title6: "通过推广二维码注册会员可获得"
+        title0: "QT特权",
+        title1: "专属QT标识",
+        title2: "开通获取信息权限",
+        title3: "QT特权",
+        title4: "获得QT特权",
+        title5: "获取信息权限",
+        title6: "开通即可获得获取信息权限"
       },
       typeData: [{
-        title0: "推广经理特权",
-        title1: "专属VIP标识",
-        title2: "专属VIP尊贵身份标识",
-        title3: "分享成功可获得相应佣金",
-        title4: "通过推广二维码注册会员可获得",
-        title5: "分享成功可获得相应佣金",
-        title6: "通过推广二维码注册会员可获得"
+        title0: "QT特权",
+        title1: "专属QT标识",
+        title2: "开通获取信息权限",
+        title3: "QT特权",
+        title4: "获得QT特权",
+        title5: "获取信息权限",
+        title6: "开通即可获得获取信息权限"
       },
         {
           title0: "VIP特权",

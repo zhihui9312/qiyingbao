@@ -114,7 +114,7 @@
           <!--
                     <image class="item_img" src="../images/icon_my_06.png"></image>
           -->
-          <view class="text">我要推广赚钱</view>
+          <view class="text">我的二维码</view>
         </view>
         <view class="arrow">&gt;</view>
       </navigator>

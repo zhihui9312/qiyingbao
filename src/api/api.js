@@ -41,6 +41,11 @@ const getCotList=(params)=>wxRequest(params,apiMall+"/qyb/cooperation/findCotLis
 const getComInfo=(params)=>wxRequest(params,apiMall+"/qyb/company/info");
 
 
+
+const getPhCount=(params)=>wxRequest(params,apiMall+"/qyb/user/getPhCount");
+
+const subPh=(params)=>wxRequest(params,apiMall+"/qyb/user/subPh");
+
 //微信的jscode换取sessionKey
 const wxJsCode2Session = (params) => wxRequest(params, apiMall + "/qyb/wechat/jscode2session");
 
@@ -218,7 +223,8 @@ export default {
   saveRecommend,
   getMsgList,
   getTeam,
-
+  getPhCount,
+  subPh,
 
 
 

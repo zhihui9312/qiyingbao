@@ -1,5 +1,5 @@
 <template>
-  <view class="authorize-contianer">
+  <view class="authorize-contianer" wx:if="{{isAuth}}">
     <image class="authorize-icon" src="../images/authorize.png"></image>
     <view class="auth-item">企营宝申请获取以下权限：</view>
     <view class="auth-item">获取你的公开信息（头像、昵称等）</view>
@@ -25,7 +25,8 @@
     }
     data = {
       scene: "",
-      userInfo: {}
+      userInfo: {},
+      isAuth:false
     }
 
     async saveRecommend(openid) {
@@ -58,7 +59,7 @@
         const scene = decodeURIComponent(query.scene);
         that.scene = scene;
       }
-      that.$apply();
+
       let res = await wepy.getSetting();
       if ((res.authSetting)['scope.userInfo']) {
         let userInfo = wepy.getStorageSync(USER_INFO);
@@ -80,14 +81,13 @@
               }
             });
             info = info.userInfo;
-            console.log(info);
             if (rlt.data.code == 200) {
               let data = rlt.data;
               if (data.data.openid) {
 
                 const openid = data.data.openid;
 
-                const json = await api.getUserInfo({
+                let json = await api.getUserInfo({
                   query: {
                     openid: openid
                   }
@@ -111,6 +111,12 @@
                       }
                     }
                   });
+                }else{
+                    json = await api.getUserInfo({
+                    query: {
+                      openid: openid
+                    }
+                  });
                 }
 
                 that.userInfo = json.data.data;
@@ -119,6 +125,7 @@
 
 
                 wepy.setStorageSync(USER_SPECICAL_INFO, data.data);
+                that.$apply();
               }
             }
           }
@@ -126,6 +133,9 @@
         wepy.switchTab({
           url: '/pages/home'
         })
+      }else{
+        that.isAuth=true
+        that.$apply();
       }
 
 
@@ -133,13 +143,15 @@
 
     async onGotUserInfo(e) {
       let that = this;
+      let userInfo={};
 
       if (e.detail.errMsg == 'getUserInfo:ok') {
         let res = await wepy.login();
         if (res.code) {
-          wepy.setStorageSync(USER_INFO, e.detail.userInfo);
-          let systemInfo = wepy.getSystemInfoSync();
-          wepy.setStorageSync(SYSTEM_INFO, systemInfo);
+          userInfo=e.detail.userInfo;
+          wepy.setStorageSync(USER_INFO, userInfo);
+/*          let systemInfo = wepy.getSystemInfoSync();
+          wepy.setStorageSync(SYSTEM_INFO, systemInfo);*/
           let rlt = await api.wxJsCode2Session({
             query: {
               jsCode: res.code,
@@ -150,22 +162,20 @@
             let data = rlt.data;
             if (data.data.openid) {
               wepy.setStorageSync(USER_SPECICAL_INFO, data.data);
-
               let openid = data.data.openid;
-
-              let userInfo = await api.getUserInfo({
+              let qybUser = await api.getUserInfo({
                 query: {
                   openid: openid
                 }
               });
 
-              if (userInfo.data.data) {
+              if (qybUser.data.data) {
                 wepy.switchTab({
                   url: '/pages/home'
                 });
-                let data = wepy.getStorageSync(USER_INFO);
+
               } else {
-                console.log(data);
+                data = wepy.getStorageSync(USER_INFO);
                 /*url: 'http://localhost:8181/qyb/f/qyb/register',*/
                 /**/
                 let res = wx.request({
@@ -173,11 +183,11 @@
                   method: 'GET',
                   data: {
                     openid: openid,
-                    avatar: data.avatarUrl,
-                    country: data.country,
-                    province: data.province,
-                    city: data.city,
-                    name: data.nickName,
+                    avatar: userInfo.avatarUrl,
+                    country: userInfo.country,
+                    province: userInfo.province,
+                    city: userInfo.city,
+                    name: userInfo.nickName,
                   },
                   header: {'Content-Type': 'application/json'},
                   success(res) {

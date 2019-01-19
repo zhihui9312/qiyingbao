@@ -33,11 +33,12 @@
           <view>{{userInfo.companion}}</view>
           <div>推荐人数</div>
         </div>
-
+        <navigator class="item" url="/pages/in_case">
                 <div class="member-column" style="">
                   <view>{{userInfo.balance}}</view>
                   <div>账户余额</div>
                 </div>
+        </navigator>
 
       </view>
     </view>

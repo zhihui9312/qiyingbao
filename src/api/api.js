@@ -3,8 +3,8 @@ import {
 } from '@/utils/wxRequest';
 let env = "-test" //-dev 或者 -test
 //const apiMall = 'https://sujiefs.com/'
-//const apiMall = 'http://localhost:8181/qyb/f'
-const apiMall = 'https://www.st-serve.cn/qyb/f'
+const apiMall = 'http://localhost:8181/qyb/f'
+//const apiMall = 'https://www.st-serve.cn/qyb/f'
 const host='https://www.st-serve.cn';
 
 /**
@@ -67,6 +67,8 @@ const saveRecommend=(params)=>wxRequest(params,apiMall+"/qyb/saveRecommend");
 const getMsgList=(params)=>wxRequest(params,apiMall+"/qyb/getMsgList");
 
 const getTeam=(params)=>wxRequest(params,apiMall+"/qyb/getTeam");
+
+const addApply=(params)=>wxRequest(params,apiMall+"/qyb/addApply");
 
 
 const getDiscoverList = (params) => wxRequest(params, apiMall + '/goods/list?cateidOne=1&cateidTwo=0&price=0&sales=2');
@@ -225,7 +227,7 @@ export default {
   getTeam,
   getPhCount,
   subPh,
-
+  addApply,
 
 
 

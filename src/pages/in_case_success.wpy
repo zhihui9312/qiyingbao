@@ -1,0 +1,91 @@
+<template>
+  <view style="background-color: #fff;height: 450rpx;width: 100%;position: relative;padding: 145rpx 0;box-sizing: border-box;">
+
+    <view style="height: 140rpx; text-align: center">
+      <image src="../images/icon_succ.png" style="font-size: 38px;color: #fff;text-align: center;width: 100rpx;height: 80rpx;"></image>
+      <view style="font-size: 14px;color: #5EC6C6;text-align: center;padding-top: 10rpx;">您的提现申请已提交!</view>
+    </view>
+
+  </view>
+
+
+  <navigator class="item" url="/pages/in_case?apply=1&bl={{bl}}">
+  <button @tap="applyCase" style="text-align: center;width: 90%;height: 45px;background: #5EC6C6;line-height: 45px;font-size: 15px;color: #FFF;position: absolute;top: 45%;border-radius: 10rpx;left: 5%;">
+    确定
+  </button>
+  </navigator>
+
+</template>
+
+
+<script>
+  import wepy from 'wepy';
+  import api from '@/api/api';
+  import tip from '@/utils/tip';
+  import {
+    USER_INFO, USER_SPECICAL_INFO, QYB_INFO
+  } from '@/utils/constant';
+
+  export default class InCaseS extends wepy.page {
+    config = {
+      navigationBarTitleText: '余额提现',
+    }
+
+    data = {
+      bl:""
+    }
+    onLoad(opt) {
+      let that=this;
+      that.bl =opt.bl;
+      that.$apply();
+
+    }
+/*
+    methods={
+
+    }
+
+    async getUserInfo() {
+      let that = this;
+      const json = await api.getUserInfo({
+        query: {
+          id: that.qybInfo.id
+        }
+      });
+      let data=json.data.data;
+
+      if(data.vipLevel==5){
+        data.advCount ="无限制" ;
+        data.phCount ="无限制" ;
+      }
+      wepy.setStorageSync(QYB_INFO, data);
+      that.qybInfo=data;
+      if (json.data.code == 200) {
+        that.$apply();
+        tip.success("提交成功！");
+      } else {
+        tip.error(json.data.msg)
+      }
+
+    }
+    async applyCase() {
+      let that=this;
+      if(that.qybInfo.balance<=0){
+        tip.alert("暂无余额！");
+        return;
+      }
+      const json = await api.addApply({
+        query: {
+          userId: that.qybInfo.id,
+          amount:that.qybInfo.balance
+        }
+      });
+
+      if(json.data.code==200){
+
+      }
+      this.getUserInfo()
+    }*/
+
+  }
+</script>

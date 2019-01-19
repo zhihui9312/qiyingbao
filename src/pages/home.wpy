@@ -105,7 +105,6 @@
           status: 2
         }
       });
-      console.log(json)
       if (json.data.code == 200 && json.data.data.count > 0) {
         that.discoverList = [...that.discoverList, ...json.data.data.list];
         that.page_total = json.data.count;
@@ -122,18 +121,14 @@
       const json = await api.getAdver({
         query: {}
       });
-      console.log(json);
       if (json.data.code == 200) {
 
         var array = json.data.data;
         var arrays = [];
-        console.log(array);
 
         for (var i = 0, len = array.length; i < len; i++) {
-          console.log(array[i].photo)
           arrays.push(api.host + array[i].photo);
         }
-        console.log(arrays);
         this.adList = arrays;
         this.$apply();
       } else {
@@ -149,43 +144,11 @@
 
     onLoad() {
       let that = this;
-      //this.onShow();
       this.getAdList();
     }
 
     computed = {}
     methods = {
-      goToAdvert(url) {
-        console.log("url===" + url);
-        if (url.length == 0) {
-          return;
-        }
-        wepy.navigateTo({
-          url: url
-        })
-      },
-      onShareAppMessage: function (res) {
-        if (res.from === 'button') {
-          // 来自页面内转发按钮
-          console.log(res.target)
-        }
-        return {
-          title: '素洁服装厂',
-          path: '/pages/home',
-          success: function (res) {
-            // 转发成功
-          },
-          fail: function (res) {
-            // 转发失败
-          }
-        }
-      },
-      alertCallback() {
-        tip.alert('跳转');
-      },
-      closeAlert() {
-        // tip.alert('关闭');
-      }
     }
     events = {}
 
@@ -193,8 +156,6 @@
     onReachBottom() {
       let that = this;
       that.showLoading = true;
-      console.log("ddd")
-      console.log(that.page_total + "===" + that.currentPage);
       //判断总页数是否大于翻页数
       if ((that.page_total) > that.currentPage) {
         //防止重复加载

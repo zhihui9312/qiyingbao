@@ -139,7 +139,8 @@
     data = {
       bShowBind: false,
       userInfo: {},
-      speInfo: {}
+      speInfo: {},
+      isApply:false
     }
 
     async getUserInfo() {

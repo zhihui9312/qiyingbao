@@ -9,7 +9,7 @@
   </view>
 
 
-  <navigator class="item" url="/pages/in_case?apply=1&bl={{bl}}">
+  <navigator class="item" url="/pages/in_case2?apply=1&bl={{bl}}">
   <button @tap="applyCase" style="text-align: center;width: 90%;height: 45px;background: #5EC6C6;line-height: 45px;font-size: 15px;color: #FFF;position: absolute;top: 45%;border-radius: 10rpx;left: 5%;">
     确定
   </button>

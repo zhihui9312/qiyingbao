@@ -20,10 +20,7 @@
     <view style="color: #999999">申请成功之后，余额将提现到当先微信钱包账户</view>
   </view>
 
-  <button @tap="applyCase" style="text-align: center;width: 90%;height: 45px;background: #F7633F;line-height: 45px;font-size: 15px;color: #FFF;position: absolute;bottom: 10px;border-radius: 10px;left: 5%;" wx-if="{{!isApply}}">
-    申请提现
-  </button>
-  <button  style="text-align: center;width: 90%;height: 45px;background: #C7C7C7;line-height: 45px;font-size: 15px;color: #FFF;position: absolute;bottom: 10px;border-radius: 10px;left: 5%;"wx-if="{{isApply}}">
+  <button  style="text-align: center;width: 90%;height: 45px;background: #C7C7C7;line-height: 45px;font-size: 15px;color: #FFF;position: absolute;bottom: 10px;border-radius: 10px;left: 5%;">
     提现申请中
   </button>
 
@@ -38,7 +35,7 @@
     USER_INFO, USER_SPECICAL_INFO, QYB_INFO
   } from '@/utils/constant';
 
-  export default class InCase extends wepy.page {
+  export default class InCase2 extends wepy.page {
     config = {
       navigationBarTitleText: '余额提现',
     }
@@ -56,76 +53,21 @@
       userInfo.balance=userInfo.balance.toFixed(2);
       that.qybInfo = userInfo;
 
-/*      if(option.apply){
+      if(option.apply){
         that. isApply=true;
         that.qybInfo.balance=option.bl;
-      }*/
+      }
       that.$apply();
 
 
-
-
-
-
-      //this.getUserInfo()
+      //this.selectStatus();
 
     }
 
     onShow(){
-      this.selectStatus();
-    }
-
-
-    async selectStatus() {
-      let that = this;
-      const json = await api.selectStatus({
-        query: {
-          userId: that.qybInfo.id
-        }
-      });
-      if(json.data.msg=='1'){
-        that.isApply=true;
-      }else{
-        that.isApply=false;
-      }
-      that.$apply();
-      console.log(json);
-
-/*      let data=json.data.data;
-
-      if(data.vipLevel==5){
-        data.advCount ="无限制" ;
-        data.phCount ="无限制" ;
-      }
-      wepy.setStorageSync(QYB_INFO, data);
-      that.qybInfo=data;
-      if (json.data.code == 200) {
-        that.$apply();
-
-      } else {
-        tip.error(json.data.msg)
-      }*/
 
     }
-    async applyCase() {
-      let that=this;
-      if(that.qybInfo.balance<=0){
-        tip.alert("暂无可用余额！");
-        return;
-      }
-      const json = await api.addApply({
-        query: {
-          userId: that.qybInfo.id,
-          amount:that.qybInfo.balance
-        }
-      });
 
-      if(json.data.code==200){
-        wx.navigateTo({
-          url:'/pages/in_case_success?bl='+that.qybInfo.balance
-        });
-      }
-    }
 
   }
 </script>

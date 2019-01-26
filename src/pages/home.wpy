@@ -105,9 +105,10 @@
           status: 2
         }
       });
+      console.log(json);
       if (json.data.code == 200 && json.data.data.count > 0) {
         that.discoverList = [...that.discoverList, ...json.data.data.list];
-        that.page_total = json.data.count;
+        that.page_total = (json.data.data.count/10)+1;
       }
       if (json.data.data.count == 0) {
         //暂无数据
@@ -138,6 +139,7 @@
     onShow() {
       let that = this;
       that.discoverList = [];
+      that.currentPage=1;
       that.$apply();
       this.getDiscoverList();
     }

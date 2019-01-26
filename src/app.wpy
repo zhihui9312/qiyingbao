@@ -28,6 +28,7 @@ export default class extends wepy.app {
       'pages/info_team',
       'pages/coop_list',
       'pages/in_case_success',
+      'pages/in_case2',
       'pages/in_case'
     ],
     window: {

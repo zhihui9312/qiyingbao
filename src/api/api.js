@@ -3,8 +3,8 @@ import {
 } from '@/utils/wxRequest';
 let env = "-test" //-dev 或者 -test
 //const apiMall = 'https://sujiefs.com/'
-const apiMall = 'http://localhost:8181/qyb/f'
-//const apiMall = 'https://www.st-serve.cn/qyb/f'
+//const apiMall = 'http://localhost:8181/qyb/f'
+const apiMall = 'https://www.st-serve.cn/qyb/f'
 const host='https://www.st-serve.cn';
 
 /**
@@ -12,6 +12,7 @@ const host='https://www.st-serve.cn';
  * @param  {[type]} params [description]
  * @return {[type]}        [description]
  */
+
 
 //获取合作列表
 const getCooperationList=(params)=>wxRequest(params,apiMall+"/qyb/cooperation/list");
@@ -69,6 +70,8 @@ const getMsgList=(params)=>wxRequest(params,apiMall+"/qyb/getMsgList");
 const getTeam=(params)=>wxRequest(params,apiMall+"/qyb/getTeam");
 
 const addApply=(params)=>wxRequest(params,apiMall+"/qyb/addApply");
+
+const selectStatus=(params)=>wxRequest(params,apiMall+"/qyb/selectStatus");
 
 
 const getDiscoverList = (params) => wxRequest(params, apiMall + '/goods/list?cateidOne=1&cateidTwo=0&price=0&sales=2');
@@ -228,7 +231,7 @@ export default {
   getPhCount,
   subPh,
   addApply,
-
+  selectStatus,
 
 
   hostGoodsList,
